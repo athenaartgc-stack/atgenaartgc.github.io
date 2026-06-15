@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AthenaART — Portfolio</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230a0a0a'/%3E%3Ctext x='32' y='47' font-family='Georgia,serif' font-size='46' font-weight='700' font-style='italic' text-anchor='middle' fill='%23c9a84c'%3EA%3C/text%3E%3C/svg%3E">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0a0a;
+  --surface:#141414;
+  --surface2:#1c1c1c;
+  --border:#272727;
+  --text:#e8e4dc;
+  --muted:#666;
+  --muted2:#444;
+  --gold:#c9a84c;
+  --gold2:#e8c97a;
+  --blur:24px;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,-apple-system,sans-serif;font-size:15px;line-height:1.6}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
+
+/* ── HERO ── */
+.hero{position:relative;width:100%;height:100vh;overflow:hidden;background:#050505}
+.hero-slides{position:absolute;inset:0}
+.hero-slide{
+  position:absolute;inset:0;
+  width:100%;height:100%;object-fit:cover;object-position:center center;
+  opacity:0;transition:opacity 1.8s ease;
+}
+.hero-slide.active{opacity:.85}
+.hero-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(0,0,0,.92) 0%,rgba(0,0,0,.3) 45%,transparent 70%);
+  display:flex;align-items:flex-end;padding:80px 32px 36px;
+}
+.hero-text h1{
+  font-size:clamp(2rem,8vw,4rem);font-weight:200;
+  color:#fff;letter-spacing:.08em;
+  text-shadow:0 2px 24px rgba(0,0,0,.6);
+}
+.hero-text h1 span{color:var(--gold)}
+.hero-text p{
+  color:rgba(255,255,255,.5);font-size:.82rem;
+  margin-top:10px;letter-spacing:.12em;text-transform:uppercase;
+  line-height:1.8;
+}
+.hero-line{
+  display:inline-block;width:28px;height:1px;
+  background:var(--gold);margin-right:10px;vertical-align:middle;
+}
+.scroll-hint{
+  position:absolute;bottom:100px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+  color:rgba(255,255,255,.35);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
+  animation:bounce 2s ease-in-out infinite;cursor:pointer;
+  text-decoration:none;
+}
+.scroll-hint svg{opacity:.4}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+@media(min-width:769px){
+  .hero-overlay{padding:80px 52px 44px}
+  .scroll-hint{bottom:36px}
+}
+
+/* ── NAVBAR ── */
+.navbar{
+  position:sticky;top:0;z-index:100;
+  background:rgba(10,10,10,.95);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;
+  padding:0 36px;gap:0;
+  overflow-x:auto;scrollbar-width:none;
+}
+.navbar::-webkit-scrollbar{display:none}
+.nav-btn{
+  padding:16px 16px;font-size:.78rem;
+  letter-spacing:.09em;text-transform:uppercase;
+  background:none;border:none;cursor:pointer;white-space:nowrap;
+  color:var(--muted);border-bottom:2px solid transparent;
+  transition:color .2s,border-color .2s;
+}
+.nav-btn:hover{color:var(--text)}
+.nav-btn.active{color:var(--gold);border-bottom-color:var(--gold)}
+
+.nav-end{margin-left:auto;display:flex;align-items:center;gap:10px;padding-left:16px;flex-shrink:0}
+
+/* Resume button — gold, prominent */
+.btn-resume{
+  display:flex;align-items:center;gap:7px;
+  padding:9px 22px;
+  background:var(--gold);color:#0a0a0a;
+  border:none;border-radius:3px;
+  font-size:.78rem;font-weight:600;letter-spacing:.08em;
+  text-transform:uppercase;cursor:pointer;
+  transition:background .2s,transform .15s;
+  box-shadow:0 0 18px rgba(201,168,76,.3);
+}
+.btn-resume:hover{background:var(--gold2);transform:translateY(-1px)}
+
+/* Contact button — outlined */
+.btn-contact{
+  display:flex;align-items:center;gap:6px;
+  padding:8px 18px;
+  background:none;color:var(--gold);
+  border:1px solid var(--gold);border-radius:3px;
+  font-size:.78rem;letter-spacing:.08em;
+  text-transform:uppercase;cursor:pointer;
+  transition:background .2s,color .2s;
+}
+.btn-contact:hover{background:var(--gold);color:#0a0a0a}
+
+/* Lang toggle button */
+.btn-lang{
+  padding:8px 13px;background:none;
+  border:1px solid var(--border);border-radius:3px;
+  color:var(--muted);font-size:.75rem;letter-spacing:.08em;
+  text-transform:uppercase;cursor:pointer;
+  transition:color .2s,border-color .2s;
+  flex-shrink:0;
+}
+.btn-lang:hover{color:var(--gold);border-color:var(--gold)}
+
+/* ── MAIN ── */
+.main{padding:52px 40px;max-width:1440px;margin:0 auto}
+
+.section-header{display:flex;align-items:center;gap:14px;margin-bottom:28px;flex-wrap:wrap}
+.section-header h2{font-size:1rem;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:var(--gold)}
+.section-header span{font-size:.78rem;color:var(--muted)}
+.sec-btn{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:7px 16px;border-radius:4px;
+  font-size:.75rem;font-weight:600;letter-spacing:.04em;
+  text-decoration:none;cursor:pointer;
+  transition:opacity .2s,transform .15s;
+  margin-left:auto;
+}
+.sec-btn:hover{opacity:.85;transform:translateY(-1px)}
+.sec-btn--fb{background:#1877F2;color:#fff}
+.sec-btn--vgen{background:#22c55e;color:#fff}
+hr.divider{border:none;border-top:1px solid var(--border);margin:60px 0 52px}
+
+/* ── GALLERY GRID ── */
+.gallery-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+  gap:10px;
+}
+.gitem{
+  position:relative;overflow:hidden;
+  aspect-ratio:3/4;background:var(--surface);
+  cursor:pointer;border-radius:2px;
+  border:1px solid var(--border);
+}
+.gitem img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform .45s ease,opacity .3s;
+}
+.gitem:hover img{transform:scale(1.06)}
+.gitem .glabel{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:32px 12px 11px;
+  background:linear-gradient(to top,rgba(0,0,0,.75),transparent);
+  color:rgba(255,255,255,.85);font-size:.75rem;letter-spacing:.05em;
+  opacity:0;transition:opacity .3s;
+}
+.gitem:hover .glabel{opacity:1}
+.gitem .gold-corner{
+  position:absolute;top:0;left:0;width:0;height:0;
+  border-top:28px solid var(--gold);border-right:28px solid transparent;
+  opacity:0;transition:opacity .2s;
+}
+.gitem:hover .gold-corner{opacity:.6}
+
+/* ── PROJECT CARDS ── */
+.project-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.pcard{
+  position:relative;overflow:hidden;
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:3px;cursor:pointer;
+  transition:border-color .3s,box-shadow .3s;
+}
+.pcard:hover{border-color:var(--gold);box-shadow:0 4px 28px rgba(201,168,76,.12)}
+.pcard .cover{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;transition:transform .45s ease}
+.pcard:hover .cover{transform:scale(1.04)}
+.pcard .card-info{padding:15px 16px;border-top:1px solid var(--border)}
+.pcard .card-info h3{font-size:.88rem;font-weight:500;color:var(--text);margin-bottom:3px}
+.pcard .card-info p{font-size:.75rem;color:var(--muted)}
+.page-badge{
+  position:absolute;top:10px;right:10px;
+  background:rgba(0,0,0,.7);border:1px solid var(--border);
+  color:var(--gold);font-size:.7rem;padding:3px 9px;border-radius:20px;letter-spacing:.05em;
+}
+
+/* ── PROJECT FEATURED (with note) ── */
+.project-featured{
+  display:grid;grid-template-columns:280px 1fr;
+  grid-column:1/-1;
+  width:100%;
+  border:1px solid var(--border);border-radius:3px;
+  background:var(--surface);overflow:hidden;cursor:pointer;
+  transition:border-color .3s,box-shadow .3s;
+  margin-bottom:20px;
+}
+.project-featured:hover{border-color:var(--gold);box-shadow:0 4px 28px rgba(201,168,76,.12)}
+.project-featured .pf-cover{
+  position:relative;flex-shrink:0;
+}
+.project-featured .pf-cover img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .45s ease;
+}
+.project-featured:hover .pf-cover img{transform:scale(1.04)}
+.project-featured .page-badge{position:absolute;top:10px;right:10px}
+.project-featured .pf-info{
+  padding:36px 40px;
+  display:flex;flex-direction:column;justify-content:center;gap:16px;
+  border-left:1px solid var(--border);
+}
+.project-featured .pf-info h3{
+  font-size:1.25rem;font-weight:400;color:var(--text);
+  letter-spacing:.03em;
+}
+.project-featured .pf-info .pf-desc{
+  font-size:.75rem;color:var(--gold);letter-spacing:.09em;text-transform:uppercase;
+}
+.project-featured .pf-info .pf-note{
+  font-size:.88rem;color:var(--muted);line-height:1.8;
+  border-left:2px solid var(--gold);padding-left:14px;
+}
+.project-featured .pf-info .pf-note strong{color:var(--text);}
+.project-featured .pf-cta{
+  display:inline-flex;align-items:center;gap:7px;margin-top:6px;
+  font-size:.76rem;color:var(--gold);letter-spacing:.07em;text-transform:uppercase;
+}
+@media(max-width:700px){
+  .project-featured{grid-template-columns:150px 1fr}
+  .project-featured .pf-info{padding:20px 20px}
+  .project-featured .pf-info h3{font-size:1rem}
+  .project-featured .pf-info .pf-note{font-size:.78rem}
+}
+
+/* ── NSFW ── */
+.nsfw-gate{
+  text-align:center;padding:72px 20px;
+  border:1px solid var(--border);border-radius:3px;
+  background:var(--surface);
+}
+.nsfw-gate h3{font-size:1rem;font-weight:400;color:var(--gold);letter-spacing:.06em;margin-bottom:8px}
+.nsfw-gate p{color:var(--muted);font-size:.85rem;margin-bottom:28px}
+.nsfw-unlock{
+  padding:11px 32px;border:1px solid var(--gold);
+  background:none;color:var(--gold);font-size:.8rem;
+  letter-spacing:.08em;text-transform:uppercase;cursor:pointer;border-radius:3px;
+  transition:background .2s,color .2s;
+}
+.nsfw-unlock:hover{background:var(--gold);color:#0a0a0a}
+.nsfw-grid{display:none}
+.nsfw-grid.visible{display:grid}
+.nsfw-item{
+  position:relative;overflow:hidden;
+  aspect-ratio:3/4;cursor:pointer;background:var(--surface);
+  border-radius:2px;border:1px solid var(--border);
+}
+.nsfw-item img{
+  width:100%;height:100%;object-fit:cover;
+  filter:blur(var(--blur)) brightness(.5);
+  transition:filter .4s,transform .4s;transform:scale(1.06);
+}
+.nsfw-item.revealed img{filter:none;transform:scale(1)}
+.blur-lbl{
+  position:absolute;inset:0;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  color:rgba(255,255,255,.7);font-size:.78rem;letter-spacing:.08em;
+  text-transform:uppercase;pointer-events:none;transition:opacity .3s;gap:8px;
+}
+.nsfw-item.revealed .blur-lbl{opacity:0}
+
+/* ── LIGHTBOX ── */
+.lightbox{
+  display:none;position:fixed;inset:0;z-index:1000;
+  background:rgba(0,0,0,.95);
+  align-items:center;justify-content:center;padding:16px;
+}
+.lightbox.open{display:flex}
+.lightbox img{max-width:90vw;max-height:90vh;object-fit:contain;border-radius:2px}
+.lb-close{position:fixed;top:18px;right:24px;background:none;border:none;color:rgba(255,255,255,.5);font-size:2rem;cursor:pointer;z-index:1001;transition:color .2s}
+.lb-close:hover{color:#fff}
+.lb-prev,.lb-next{
+  position:fixed;top:50%;transform:translateY(-50%);
+  background:none;border:none;color:rgba(255,255,255,.4);
+  font-size:2.4rem;cursor:pointer;z-index:1001;padding:24px;transition:color .2s;
+}
+.lb-prev{left:0}.lb-next{right:0}
+.lb-prev:hover,.lb-next:hover{color:var(--gold)}
+.lb-count{
+  position:fixed;bottom:18px;left:50%;transform:translateX(-50%);
+  color:rgba(255,255,255,.35);font-size:.75rem;letter-spacing:.08em;
+}
+
+/* ── READER ── */
+.reader{display:none;position:fixed;inset:0;z-index:1000;background:rgba(5,5,5,.97);flex-direction:column;align-items:center;overflow-y:auto;padding:56px 16px 40px}
+.reader.open{display:flex}
+.reader img{width:100%;max-width:720px;display:block;margin:0 auto 3px}
+.reader-close{position:fixed;top:14px;right:22px;background:none;border:none;color:rgba(255,255,255,.5);font-size:1.9rem;cursor:pointer;z-index:1002}
+.reader-close:hover{color:var(--gold)}
+.reader-title{position:fixed;top:18px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.4);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap}
+
+/* ── RESUME MODAL ── */
+.modal-wrap{display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.8);align-items:center;justify-content:center;padding:20px}
+.modal-wrap.open{display:flex}
+.modal-box{
+  background:var(--surface);border:1px solid var(--border);
+  width:100%;max-width:700px;max-height:92vh;overflow-y:auto;
+  border-radius:4px;position:relative;
+}
+.modal-box::-webkit-scrollbar{width:3px}
+.modal-box::-webkit-scrollbar-thumb{background:var(--border)}
+
+/* Resume design */
+.resume-top{
+  display:flex;gap:28px;align-items:flex-start;
+  padding:40px 44px 30px;
+  border-bottom:1px solid var(--border);
+}
+.resume-avatar{
+  width:84px;height:84px;flex-shrink:0;
+  border-radius:50%;
+  border:2px solid var(--gold);
+  background:var(--surface2);
+  overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--muted);font-size:.7rem;letter-spacing:.04em;text-align:center;
+}
+.resume-avatar img{width:100%;height:100%;object-fit:cover}
+.resume-id{flex:1}
+.resume-id h2{font-size:1.5rem;font-weight:300;letter-spacing:.04em;color:var(--text)}
+.resume-id p{font-size:.82rem;color:var(--gold);margin-top:5px;letter-spacing:.07em;text-transform:uppercase}
+.resume-id small{font-size:.78rem;color:var(--muted);display:block;margin-top:4px}
+.resume-dl{
+  display:flex;align-items:center;gap:7px;
+  padding:9px 18px;border:1px solid var(--gold);border-radius:3px;
+  background:none;color:var(--gold);font-size:.75rem;
+  letter-spacing:.06em;cursor:pointer;text-decoration:none;white-space:nowrap;
+  transition:background .2s,color .2s;align-self:flex-start;margin-top:4px;
+}
+.resume-dl:hover{background:var(--gold);color:#0a0a0a}
+.resume-body{padding:32px 44px 40px}
+.rsec{margin-bottom:28px}
+.rsec-title{
+  font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:14px;
+  padding-bottom:7px;border-bottom:1px solid var(--border);
+}
+.rrow{display:flex;gap:18px;margin-bottom:10px;font-size:.86rem}
+.rrow .lbl{color:var(--muted);min-width:110px;flex-shrink:0;font-size:.8rem}
+.rrow a{color:var(--text);text-decoration:none;transition:color .2s}
+.rrow a:hover{color:var(--gold)}
+.tags{display:flex;flex-wrap:wrap;gap:7px}
+.tag{
+  padding:5px 13px;border:1px solid var(--border);border-radius:20px;
+  font-size:.76rem;color:var(--muted);
+}
+
+/* ── CONTACT MODAL ── */
+.contact-box{background:var(--surface);border:1px solid var(--border);border-radius:4px;width:100%;max-width:460px;position:relative}
+.contact-head{padding:32px 36px 20px;border-bottom:1px solid var(--border)}
+.contact-head h2{font-size:1.1rem;font-weight:300;color:var(--gold);letter-spacing:.06em}
+.contact-head p{font-size:.8rem;color:var(--muted);margin-top:4px}
+.contact-links{padding:24px 36px 32px;display:flex;flex-direction:column;gap:14px}
+.clink{
+  display:flex;align-items:center;gap:14px;
+  padding:13px 16px;border:1px solid var(--border);border-radius:3px;
+  background:var(--surface2);text-decoration:none;color:var(--text);
+  transition:border-color .2s,background .2s;
+}
+.clink:hover{border-color:var(--gold);background:rgba(201,168,76,.06)}
+.clink-icon{width:36px;height:36px;border-radius:50%;background:var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--gold)}
+.clink-info small{display:block;font-size:.72rem;color:var(--muted);letter-spacing:.04em;text-transform:uppercase}
+.clink-info span{font-size:.87rem}
+
+/* close btn shared */
+.modal-close{
+  position:absolute;top:14px;right:18px;
+  background:none;border:none;color:var(--muted);
+  font-size:1.5rem;cursor:pointer;transition:color .2s;
+}
+.modal-close:hover{color:var(--gold)}
+
+/* ── FOOTER ── */
+footer{
+  text-align:center;padding:36px;
+  border-top:1px solid var(--border);
+  color:var(--muted2);font-size:.76rem;letter-spacing:.06em;
+}
+footer span{color:var(--gold)}
+
+/* category sections */
+.cat-sec{display:none}.cat-sec.active{display:block}
+
+/* ── RESPONSIVE ── */
+@media (max-width:768px){
+  .hero-overlay{padding:28px 24px}
+  .hero-text h1{font-size:clamp(1.8rem,8vw,3rem)}
+
+  .navbar{padding:0 12px}
+  .nav-btn{padding:14px 10px;font-size:.72rem}
+  .btn-resume{padding:8px 14px;font-size:.72rem}
+  .btn-contact{padding:7px 12px;font-size:.72rem}
+
+  .main{padding:32px 16px}
+  hr.divider{margin:40px 0 36px}
+
+  .gallery-grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:7px}
+  .project-grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px}
+
+  /* Resume modal */
+  .resume-top{flex-direction:column;align-items:flex-start;gap:16px;padding:24px 20px 20px}
+  .resume-dl{align-self:stretch;justify-content:center}
+  .resume-body{padding:20px 20px 28px}
+  .rrow{flex-direction:column;gap:2px}
+  .rrow .lbl{min-width:unset;font-size:.76rem}
+
+  /* Contact modal */
+  .contact-head{padding:24px 20px 14px}
+  .contact-links{padding:16px 20px 24px;gap:10px}
+
+  /* Lightbox arrows */
+  .lb-prev,.lb-next{padding:12px}
+  .lb-prev{font-size:1.8rem}.lb-next{font-size:1.8rem}
+
+  /* Reader */
+  .reader{padding:48px 6px 32px}
+  .reader img{max-width:100%}
+}
+
+@media (max-width:420px){
+  .gallery-grid{grid-template-columns:repeat(2,1fr)}
+  .project-grid{grid-template-columns:repeat(2,1fr)}
+  .nav-btn{padding:13px 8px;font-size:.68rem;letter-spacing:.04em}
+  .btn-resume span,.btn-contact span{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-slides">
+    <img class="hero-slide active" src="banner.jpg" alt="banner" onerror="this.style.display='none'">
+    <img class="hero-slide" src="banner2.jpg" alt="banner2" onerror="this.style.display='none'">
+  </div>
+  <div class="hero-overlay">
+    <div class="hero-text">
+      <h1>Athena<span>ART</span></h1>
+      <p><span class="hero-line"></span>2D Semi-Realistic · Illustration · Comic · Commission</p>
+    </div>
+  </div>
+  <a class="scroll-hint" href="#navbar">
+    Scroll
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="6 9 12 15 18 9"/></svg>
+  </a>
+</div>
+<div id="navbar"></div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <button class="nav-btn active" data-sec="all" onclick="showSec(this,'all')" data-en="All" data-th="ทั้งหมด">All</button>
+  <button class="nav-btn" data-sec="illus" onclick="showSec(this,'illus')" data-en="Illustration" data-th="ภาพวาด">Illustration</button>
+  <button class="nav-btn" data-sec="comm" onclick="showSec(this,'comm')" data-en="Commission" data-th="คอมมิชชั่น">Commission</button>
+  <button class="nav-btn" data-sec="personal" onclick="showSec(this,'personal')" data-en="Personal Projects" data-th="โปรเจคส่วนตัว">Personal Projects</button>
+  <button class="nav-btn" data-sec="nsfw" onclick="showSec(this,'nsfw')">18+</button>
+  <div class="nav-end">
+    <button class="btn-lang" id="lang-btn" onclick="toggleLang()">TH</button>
+    <button class="btn-contact" onclick="openModal('contact-modal')">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      <span data-en="Contact" data-th="ติดต่อ">Contact</span>
+    </button>
+    <button class="btn-resume" onclick="openModal('resume-modal')">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+      Resume
+    </button>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main class="main">
+
+  <!-- ALL -->
+  <div class="cat-sec active" id="sec-all">
+    <div class="section-header">
+      <h2>Illustration</h2>
+      <span data-en="Personal Work" data-th="งานส่วนตัว">Personal Work</span>
+    </div>
+    <div class="gallery-grid" id="g-illus-a"></div>
+    <hr class="divider">
+    <div class="section-header">
+      <h2>Commission</h2>
+      <span data-en="Client Work" data-th="งานจากลูกค้า">Client Work</span>
+    </div>
+    <div class="gallery-grid" id="g-comm-a"></div>
+    <hr class="divider">
+    <div class="section-header">
+      <h2>Projects</h2>
+      <span data-en="Selected Projects" data-th="โปรเจคต่างๆ">Selected Projects</span>
+    </div>
+    <div class="project-grid" id="g-proj-a"></div>
+  </div>
+
+  <!-- ILLUSTRATION -->
+  <div class="cat-sec" id="sec-illus">
+    <div class="section-header">
+      <h2>Illustration</h2>
+      <span data-en="Personal Work" data-th="งานส่วนตัว">Personal Work</span>
+      <a class="sec-btn sec-btn--fb" href="https://www.facebook.com/sarawutAthena/" target="_blank">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+        <span data-en="View more on Facebook" data-th="ดูเพิ่มเติมบน Facebook">View more on Facebook</span>
+      </a>
+    </div>
+    <div class="gallery-grid" id="g-illus-b"></div>
+  </div>
+
+  <!-- COMMISSION -->
+  <div class="cat-sec" id="sec-comm">
+    <div class="section-header">
+      <h2>Commission</h2>
+      <span data-en="Client Work" data-th="งานจากลูกค้า">Client Work</span>
+      <a class="sec-btn sec-btn--vgen" href="https://vgen.co/AthenaART" target="_blank">
+        <img src="VGen logo outline.png" width="16" height="16" style="filter:brightness(0) invert(1);vertical-align:middle">
+        <span data-en="Vgen Shop" data-th="หน้าร้าน Vgen">Vgen Shop</span>
+      </a>
+    </div>
+    <div class="gallery-grid" id="g-comm-b"></div>
+  </div>
+
+  <!-- PERSONAL PROJECTS (merged) -->
+  <div class="cat-sec" id="sec-personal">
+    <div class="section-header">
+      <h2>Taro CMS</h2>
+      <span data-en="Commission Project · Tarot &amp; Oracle Card Deck" data-th="โปรเจคคอมมิชชั่น · ไพ่ทาโร่ &amp; ออราเคิล">Commission Project · Tarot &amp; Oracle Card Deck</span>
+    </div>
+    <div class="project-grid" id="g-taro-b"></div>
+    <hr class="divider">
+    <div class="section-header">
+      <h2>Comic</h2>
+      <span data-en="COMIC Project" data-th="โปรเจค COMIC">COMIC Project</span>
+    </div>
+    <div class="project-grid" id="g-comic-b"></div>
+    <hr class="divider">
+    <div class="section-header">
+      <h2>Webtoon</h2>
+      <span data-en="WBTOON Project" data-th="โปรเจค WBTOON">WBTOON Project</span>
+    </div>
+    <div class="project-grid" id="g-webtoon-b"></div>
+    <hr class="divider">
+    <div class="section-header">
+      <h2>OC Yaiba</h2>
+      <span>Original Character</span>
+    </div>
+    <div class="project-grid" id="g-yaiba-b"></div>
+    <hr class="divider">
+    <div class="section-header">
+      <h2>Thesis</h2>
+      <span data-en="Mini-Thesis Year 3 &amp; 4 · SPU" data-th="โปรเจค มินิธีสิส ปี 3 &amp; 4">Mini-Thesis Year 3 &amp; 4 · SPU</span>
+    </div>
+    <div class="project-grid" id="g-thesis-b"></div>
+  </div>
+
+  <!-- NSFW -->
+  <div class="cat-sec" id="sec-nsfw">
+    <div class="section-header">
+      <h2>18+ Gallery</h2>
+      <span data-en="Adult Content" data-th="เนื้อหาสำหรับผู้ใหญ่">Adult Content</span>
+    </div>
+    <div class="nsfw-gate" id="nsfw-gate">
+      <h3 data-en="⚠ Adult Content 18+" data-th="⚠ เนื้อหา 18+">⚠ Adult Content 18+</h3>
+      <p data-en="This section contains adult-only content.<br>Please confirm you are 18 years or older to proceed." data-th="ส่วนนี้มีเนื้อหาสำหรับผู้ใหญ่เท่านั้น<br>กรุณายืนยันว่าคุณอายุ 18 ปีขึ้นไปก่อนเข้าชม">This section contains adult-only content.<br>Please confirm you are 18 years or older to proceed.</p>
+      <button class="nsfw-unlock" onclick="unlockNSFW()" data-en="I am 18+ — Enter" data-th="ฉันอายุ 18+ — เข้าดูเลย">I am 18+ — Enter</button>
+    </div>
+    <div class="gallery-grid nsfw-grid" id="g-nsfw"></div>
+  </div>
+
+</main>
+
+<footer>
+  © 2025 <span>AthenaART</span> · <span data-en="Sarawut Kaewlit" data-th="ศราวุธ แก้วฤทธิ์">Sarawut Kaewlit</span> · ninjta00@gmail.com
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="lbBg(event)">
+  <button class="lb-close" onclick="closeLB()">×</button>
+  <button class="lb-prev" onclick="lbNav(-1,event)">‹</button>
+  <img id="lb-img" src="" alt="">
+  <button class="lb-next" onclick="lbNav(1,event)">›</button>
+  <div class="lb-count" id="lb-count"></div>
+</div>
+
+<!-- READER -->
+<div class="reader" id="reader">
+  <button class="reader-close" onclick="closeReader()">×</button>
+  <div class="reader-title" id="reader-title"></div>
+  <div id="reader-pages"></div>
+</div>
+
+<!-- RESUME MODAL -->
+<div class="modal-wrap" id="resume-modal" onclick="modalBg(event,'resume-modal')">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('resume-modal')">×</button>
+
+    <div class="resume-top">
+      <div class="resume-avatar" id="avatar-wrap">
+        <img src="profile.gif" alt="profile" onerror="this.style.display='none'">
+      </div>
+      <div class="resume-id">
+        <h2 data-en="Sarawut Kaewlit" data-th="ศราวุธ แก้วฤทธิ์">Sarawut Kaewlit</h2>
+        <p>2D Freelance Artist · Semi-Realistic Style</p>
+        <small>AthenaART · @atgenaart</small>
+      </div>
+      <a class="resume-dl" href="#" onclick="doPrint(event)">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+          <polyline points="7 10 12 15 17 10"/>
+          <line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        Download
+      </a>
+    </div>
+
+    <div class="resume-body">
+      <div class="rsec">
+        <div class="rsec-title" data-en="Personal Information" data-th="ข้อมูลส่วนตัว">Personal Information</div>
+        <div class="rrow">
+          <span class="lbl" data-en="Name" data-th="ชื่อ">Name</span>
+          <span data-en="Sarawut Kaewlit (Ta)" data-th="ศราวุธ แก้วฤทธิ์ (ต๊ะ)">Sarawut Kaewlit (Ta)</span>
+        </div>
+        <div class="rrow">
+          <span class="lbl" data-en="Date of Birth" data-th="วันเกิด">Date of Birth</span>
+          <span data-en="June 29, 2002" data-th="29 มิถุนายน 2545">June 29, 2002</span>
+        </div>
+        <div class="rrow">
+          <span class="lbl" data-en="Nationality" data-th="สัญชาติ">Nationality</span>
+          <span data-en="Thai" data-th="ไทย">Thai</span>
+        </div>
+        <div class="rrow">
+          <span class="lbl" data-en="Phone" data-th="โทรศัพท์">Phone</span>
+          <span>082-970-2451</span>
+        </div>
+        <div class="rrow">
+          <span class="lbl">Email</span>
+          <a href="mailto:ninjta00@gmail.com">ninjta00@gmail.com</a>
+        </div>
+      </div>
+
+      <div class="rsec">
+        <div class="rsec-title" data-en="Education" data-th="การศึกษา">Education</div>
+        <div class="rrow">
+          <span class="lbl" data-en="Bachelor's Year 5" data-th="ปริญญาตรี ปี 5">Bachelor's Year 5</span>
+          <span>
+            <span data-en="Sripatum University (SPU)" data-th="มหาวิทยาลัยศรีปทุม (SPU)">Sripatum University (SPU)</span><br>
+            <small style="color:var(--muted)" data-en="Faculty of Digital Multimedia Arts (DGA) · 2021–2026" data-th="คณะดิจิทัลมัลติมีเดียอาร์ต (DGA) · 2564–2569">Faculty of Digital Multimedia Arts (DGA) · 2021–2026</small>
+          </span>
+        </div>
+      </div>
+
+      <div class="rsec">
+        <div class="rsec-title" data-en="Skills" data-th="ทักษะ">Skills</div>
+        <div class="tags">
+          <span class="tag">2D Illustration</span>
+          <span class="tag">Character Design</span>
+          <span class="tag">Semi-Realistic</span>
+          <span class="tag">Comic / Manga</span>
+          <span class="tag">Webtoon</span>
+          <span class="tag">Commission Work</span>
+          <span class="tag">Line Art</span>
+          <span class="tag">Digital Coloring</span>
+          <span class="tag">Storyboard</span>
+        </div>
+      </div>
+
+      <div class="rsec">
+        <div class="rsec-title" data-en="Software" data-th="โปรแกรมที่ใช้">Software</div>
+        <div class="tags">
+          <span class="tag">Clip Studio Paint</span>
+        </div>
+      </div>
+
+      <div class="rsec">
+        <div class="rsec-title" data-en="Experience" data-th="ประสบการณ์">Experience</div>
+        <div class="rrow">
+          <span class="lbl">Freelance Artist</span>
+          <span data-en="2D Illustration · Character, Cover Art, NSFW · 2021–Present" data-th="รับคอมมิชชั่น 2D Illustration · ตัวละคร, ปก, NSFW · 2564–ปัจจุบัน">2D Illustration · Character, Cover Art, NSFW · 2021–Present</span>
+        </div>
+        <div class="rrow">
+          <span class="lbl">Webtoon Project</span>
+          <span data-en="Designed and illustrated a personal Webtoon series (Story + Art)" data-th="ออกแบบและวาด Webtoon ส่วนตัว (Story + Art)">Designed and illustrated a personal Webtoon series (Story + Art)</span>
+        </div>
+        <div class="rrow">
+          <span class="lbl">Comic Project</span>
+          <span data-en="Created full Comic production (Script, Storyboard, Art)" data-th="สร้าง Comic เต็มรูปแบบ (Script, Storyboard, Art)">Created full Comic production (Script, Storyboard, Art)</span>
+        </div>
+        <div class="rrow">
+          <span class="lbl">Mini-Thesis</span>
+          <span data-en="Mini-Thesis Year 3 &amp; Year 4 · DGA Faculty, Sripatum University" data-th="โปรเจคมินิธีสิส ปี 3 &amp; ปี 4 · คณะ DGA มหาวิทยาลัยศรีปทุม">Mini-Thesis Year 3 &amp; Year 4 · DGA Faculty, Sripatum University</span>
+        </div>
+      </div>
+
+      <div class="rsec">
+        <div class="rsec-title" data-en="Contact" data-th="ช่องทางติดต่อ">Contact</div>
+        <div class="rrow"><span class="lbl">Instagram</span><a href="https://www.instagram.com/atgenaart/" target="_blank">@atgenaart</a></div>
+        <div class="rrow"><span class="lbl">Facebook</span><a href="https://www.facebook.com/sarawutAthena/" target="_blank">Sarawut Kaewlit</a></div>
+        <div class="rrow"><span class="lbl">Vgen</span><a href="https://vgen.co/AthenaART" target="_blank">vgen.co/AthenaART</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT MODAL -->
+<div class="modal-wrap" id="contact-modal" onclick="modalBg(event,'contact-modal')">
+  <div class="modal-box contact-box">
+    <button class="modal-close" onclick="closeModal('contact-modal')">×</button>
+    <div class="contact-head">
+      <h2 data-en="Contact" data-th="ช่องทางติดต่อ">Contact</h2>
+      <p data-en="Available for Commission · Collaboration · Inquiries" data-th="รับงาน Commission · Collaboration · อื่นๆ">Available for Commission · Collaboration · Inquiries</p>
+    </div>
+    <div class="contact-links">
+
+      <a class="clink" href="mailto:ninjta00@gmail.com">
+        <div class="clink-icon">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <div class="clink-info">
+          <small>Email</small>
+          <span>ninjta00@gmail.com</span>
+        </div>
+      </a>
+
+      <a class="clink" href="https://www.instagram.com/atgenaart/" target="_blank">
+        <div class="clink-icon">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </div>
+        <div class="clink-info">
+          <small>Instagram</small>
+          <span>@atgenaart</span>
+        </div>
+      </a>
+
+      <a class="clink" href="https://www.facebook.com/sarawutAthena/" target="_blank">
+        <div class="clink-icon">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+        </div>
+        <div class="clink-info">
+          <small>Facebook</small>
+          <span>Sarawut Kaewlit</span>
+        </div>
+      </a>
+
+      <a class="clink" href="https://vgen.co/AthenaART" target="_blank">
+        <div class="clink-icon">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+        </div>
+        <div class="clink-info">
+          <small>Vgen · Commission</small>
+          <span>vgen.co/AthenaART</span>
+        </div>
+      </a>
+
+      <a class="clink" href="tel:0829702451">
+        <div class="clink-icon">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        </div>
+        <div class="clink-info">
+          <small data-en="Phone" data-th="โทรศัพท์">Phone</small>
+          <span>082-970-2451</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</div>
+
+<script>
+// ── LANGUAGE ──────────────────────────────────────────────────────────────
+let currentLang = 'en';
+
+function t(en, th) {
+  return currentLang === 'en' ? en : th;
+}
+
+function setLang(lang) {
+  currentLang = lang;
+  document.documentElement.lang = lang;
+  document.getElementById('lang-btn').textContent = lang === 'en' ? 'TH' : 'EN';
+
+  // Update all static elements with data-en / data-th
+  document.querySelectorAll('[data-en]').forEach(el => {
+    const val = el.dataset[lang];
+    if (val !== undefined) el.innerHTML = val;
+  });
+
+  // Re-render dynamic content for current section
+  const dynamicIds = ['g-illus-a','g-illus-b','g-comm-a','g-comm-b',
+                      'g-proj-a','g-taro-b','g-comic-b','g-webtoon-b',
+                      'g-yaiba-b','g-thesis-b','g-nsfw'];
+  dynamicIds.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) { el.innerHTML = ''; el._done = 0; }
+  });
+
+  const activeBtn = document.querySelector('.nav-btn.active');
+  if (activeBtn) RENDERS[activeBtn.dataset.sec]();
+}
+
+function toggleLang() {
+  setLang(currentLang === 'en' ? 'th' : 'en');
+}
+
+// ── DATA ─────────────────────────────────────────────────────────────────
+const NSFW_DIR = 'NSFW 18+';
+
+const ILLUS = [
+  'Illustration/Illustration3.jpg',
+  'Illustration/Illustration2.jpg',
+  'Illustration/Illustration8.jpg',
+  'Illustration/Illustration25.png',
+  'Illustration/Illustration39.jpg',
+  'Illustration/Illustration40.jpg',
+  'Illustration/Illustration51.png',
+  'Illustration/Illustration62.png',
+  'Illustration/SuperGirl.jpg',
+  'Illustration/Firefly.png',
+  'Illustration/NEW OC 3.png',
+  'Illustration/sketch.jpg',
+  'Illustration/sketch2.png',
+  'Illustration/sketch3.png',
+  'Illustration/sketch4.jpg',
+  'Illustration/sketch5.jpg',
+  'Illustration/sketch6.jpg',
+  'Illustration/sketch7.jpg',
+  'Illustration/sketch8.jpg',
+  'Illustration/sketch9.jpg',
+  'Illustration/sketch10.jpg',
+  'Illustration/sketch11.png',
+  'Illustration/sketch12.png',
+  'Illustration/sketch13.jpg',
+  'Illustration/sketch14.jpg',
+  'Illustration/sketch15.png',
+  'Illustration/sketch16.png',
+  'Illustration/sketch17.jpg',
+  'Illustration/sketch18.jpg',
+  'Illustration/sketch19.jpg',
+  'Illustration/sketch20.png',
+  'Illustration/ht.png',
+  'Illustration/1.jpg',
+];
+
+const COMM = [
+  'Commission/comm3.png',
+  'Commission/comm4.jpg',
+  'Commission/comm5.png',
+  'Commission/comm6.png',
+  'Commission/comm7.jpg',
+  'Commission/comm8.png',
+  'Commission/comm_hug.png',
+  'Commission/comm_scythe.jpg',
+  'Commission/comm_blue.png',
+  'Commission/comm_aeva.png',
+  'Commission/comm_golden.png',
+  'Commission/full body.png',
+  'Commission/full body 2.png',
+  'Commission/Mavuika.jpg',
+  'Commission/CRD 2.png',
+  'Commission/Illustration4.png',
+  'Commission/card_cover.jpg',
+  'Commission/card_promo6.png',
+  'Commission/card_athena.jpg',
+  'Commission/card_zeus.jpg',
+  'Commission/card_artemis.jpg',
+  'Commission/card_apollo.jpg',
+  'Commission/card_aphrodite.jpg',
+  'Commission/card_hera.jpg',
+  'Commission/card_hermes.jpg',
+  'Commission/card_dionysus.jpg',
+  'Commission/card_ares.jpg',
+  'Commission/card_hephaestus.jpg',
+  'Commission/card_poseidon.jpg',
+];
+
+const NSFW_FILES = [
+  'nsfw_client1.jpg',
+  'nsfw_client2.png',
+  'nsfw_client3.jpg',
+  'nsfw_client4.png',
+  'nsfw_client5.jpg',
+  'nsfw_client6.png',
+  'nsfw_client7.png',
+];
+
+const THESIS3_PAGES = [
+  'Mini Thesis Year 3/cover.jpg',
+  ...([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18].map(n=>`Mini Thesis Year 3/${n}.jpg`)),
+  'Mini Thesis Year 3/18-2.jpg',
+  ...[19,20,21,22,23,24,25,26,27,28,29,30,31,32,34,35].map(n=>`Mini Thesis Year 3/${n}.jpg`),
+];
+
+const THESIS4_PAGES = [
+  'Thesis Year 4/Cover.jpg',
+  ...[1,2,3,4,5,6,7,8].map(n=>`Thesis Year 4/${n}.jpg`),
+  'Thesis Year 4/9.png',
+];
+
+const TARO_PAGES = [
+  'Taro CMS/Athena card.jpg',
+  'Taro CMS/Zeus.jpg',
+  'Taro CMS/Apollo playing cards.jpg',
+  'Taro CMS/Aphrodite playing card.jpg',
+  'Taro CMS/Atemis card.jpg',
+  'Taro CMS/Hephaestus card.jpg',
+  'Taro CMS/Atlas cards.jpg',
+  'Taro CMS/Demeter card.jpg',
+  'Taro CMS/Helen\'s card.jpg',
+  'Taro CMS/Hemera Cards.jpg',
+  'Taro CMS/Hemiros card.jpg',
+  'Taro CMS/Hermit Cards.jpg',
+  'Taro CMS/Iris card.jpg',
+  'Taro CMS/Siren Cards.jpg',
+  'Taro CMS/The Diodysus card.jpg',
+  'Taro CMS/Youth Cards.jpg',
+];
+
+const COMIC_PAGES = [
+  ...[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20].map(n=>`COMIC/${n}.png`),
+];
+
+const WEBTOON_PAGES = [
+  'WBTOON/Cover.jpg',
+  ...[1,2,3,4,5,6,7].map(n=>`WBTOON/page${n}.png`),
+];
+
+const YAIBA_PAGES = [
+  'OC yaiba/Yaiba.jpg',
+  ...[0,1,2,3,4,5,6,7,8,9,10,11,12].map(n=>`OC yaiba/Yaiba${n}.jpg`),
+];
+
+const PROJECTS = [
+  {id:'taro',    title:'Taro CMS',       desc:'Commission · Tarot & Oracle Card Deck', cover:'Taro CMS/Athena card.jpg', pages:TARO_PAGES,
+   note_en:'The largest commission project of the year — <strong>Tarot & Oracle Card Deck, 100 cards total</strong><br>Drawing and design phase <strong>100% complete</strong>. Currently in production stage.',
+   note_th:'คอมมิชชั่นโปรเจคใหญ่ที่สุดของปี — <strong>ไพ่ทาโร่และออราเคิล รวม 100 ใบ</strong><br>ขั้นตอนการ<strong>วาดและออกแบบครบ 100%</strong> แล้ว ปัจจุบันเข้าสู่ช่วงการผลิตจริง'},
+  {id:'webtoon', title:'WBTOON Project', desc:'Webtoon · Coloring & Scene Art', cover:'WBTOON/Cover.jpg', pages:WEBTOON_PAGES,
+   note_en:'<strong>Line art</strong> by another artist — I was responsible for all <strong>coloring and scene art</strong>, including character color design and backgrounds for every page.',
+   note_th:'<strong>ลายเส้น</strong>โดยศิลปินท่านอื่น &mdash; ผมรับผิดชอบงาน<strong>ลงสีและวาดฉาก</strong>ทั้งหมด รวมถึงออกแบบสีตัวละครและฉากหลังทุกหน้า'},
+  {id:'comic',   title:'Comic Project',  desc:'Comic · Coloring & Scene Art',   cover:'COMIC/1.png',    pages:COMIC_PAGES,
+   note_en:'<strong>Line art</strong> by another artist — I was responsible for all <strong>coloring and scene art</strong>, including character color design and backgrounds for every page.',
+   note_th:'<strong>ลายเส้น</strong>โดยศิลปินท่านอื่น &mdash; ผมรับผิดชอบงาน<strong>ลงสีและวาดฉาก</strong>ทั้งหมด รวมถึงออกแบบสีตัวละครและฉากหลังทุกหน้า'},
+  {id:'yaiba',   title:'OC Yaiba',       desc:'Original Character · Illustration', cover:'OC yaiba/Yaiba.jpg', pages:YAIBA_PAGES},
+  {id:'thesis3', title:'Mini-Thesis Year 3',  desc:'SPU · Digital Multimedia Arts', cover:'Mini Thesis Year 3/cover.jpg', pages:THESIS3_PAGES},
+  {id:'thesis4', title:'Mini-Thesis Year 4',  desc:'SPU · Digital Multimedia Arts', cover:'Thesis Year 4/Cover.jpg',  pages:THESIS4_PAGES},
+];
+
+// ── RENDER ───────────────────────────────────────────────────────────────
+function makeGItem(src, idx, pool) {
+  const d = document.createElement('div');
+  d.className = 'gitem';
+  const name = src.split('/').pop().replace(/\.[^.]+$/,'');
+  d.innerHTML = `<div class="gold-corner"></div><img src="${q(src)}" alt="${name}" loading="lazy" onerror="this.parentNode.style.display='none'"><div class="glabel">${name}</div>`;
+  d.onclick = () => openLB(pool, idx);
+  return d;
+}
+
+function fillGrid(id, imgs) {
+  const el = document.getElementById(id);
+  if (!el || el._done) return;
+  imgs.forEach((s, i) => el.appendChild(makeGItem(s, i, imgs)));
+  el._done = 1;
+}
+
+function fillProjects(id, projs) {
+  const el = document.getElementById(id);
+  if (!el || el._done) return;
+  projs.forEach(p => {
+    const note = currentLang === 'en' ? p.note_en : p.note_th;
+    if (note) {
+      const c = document.createElement('div');
+      c.className = 'project-featured';
+      c.innerHTML = `
+        <div class="pf-cover">
+          <img src="${q(p.cover)}" alt="${p.title}" loading="lazy" onerror="this.src='${q(p.pages[0])}'">
+          <span class="page-badge">${p.pages.length} pages${p.id==='taro' ? ' · sample' : ''}</span>
+        </div>
+        <div class="pf-info">
+          <div class="pf-desc">${p.desc}</div>
+          <h3>${p.title}</h3>
+          <div class="pf-note">${note}</div>
+          <div class="pf-cta">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            ${t('View', 'อ่านเลย')}
+          </div>
+        </div>`;
+      c.onclick = () => openReader(p);
+      el.appendChild(c);
+    } else {
+      const c = document.createElement('div');
+      c.className = 'pcard';
+      c.innerHTML = `<img class="cover" src="${q(p.cover)}" alt="${p.title}" loading="lazy" onerror="this.src='${q(p.pages[0])}'">
+        <span class="page-badge">${p.pages.length} pages${p.id==='taro' ? ' · sample' : ''}</span>
+        <div class="card-info"><h3>${p.title}</h3><p>${p.desc}</p></div>`;
+      c.onclick = () => openReader(p);
+      el.appendChild(c);
+    }
+  });
+  el._done = 1;
+}
+
+function fillNSFW() {
+  const el = document.getElementById('g-nsfw');
+  if (el._done) return;
+  const pool = NSFW_FILES.map(f => `${NSFW_DIR}/${f}`);
+  NSFW_FILES.forEach((f, i) => {
+    const d = document.createElement('div');
+    d.className = 'nsfw-item';
+    d.innerHTML = `<img src="${q(pool[i])}" alt="" loading="lazy">
+      <div class="blur-lbl">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+        ${t('Click to reveal', 'คลิกเพื่อดู')}
+      </div>`;
+    d.onclick = () => {
+      if (!d.classList.contains('revealed')) d.classList.add('revealed');
+      else openLB(pool, i);
+    };
+    el.appendChild(d);
+  });
+  el._done = 1;
+}
+
+// ── SECTIONS ─────────────────────────────────────────────────────────────
+const RENDERS = {
+  all:     () => { fillGrid('g-illus-a',ILLUS); fillGrid('g-comm-a',COMM); fillProjects('g-proj-a',PROJECTS); },
+  illus:   () => fillGrid('g-illus-b',ILLUS),
+  comm:    () => fillGrid('g-comm-b',COMM),
+  personal:() => {
+    fillProjects('g-taro-b',PROJECTS.filter(p=>p.id==='taro'));
+    fillProjects('g-comic-b',PROJECTS.filter(p=>p.id==='comic'));
+    fillProjects('g-webtoon-b',PROJECTS.filter(p=>p.id==='webtoon'));
+    fillProjects('g-yaiba-b',PROJECTS.filter(p=>p.id==='yaiba'));
+    fillProjects('g-thesis-b',PROJECTS.filter(p=>p.id.startsWith('thesis')));
+  },
+  nsfw:    () => {},
+};
+
+function showSec(btn, key) {
+  document.querySelectorAll('.cat-sec').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('sec-'+key).classList.add('active');
+  btn.classList.add('active');
+  RENDERS[key]();
+}
+
+// ── LIGHTBOX ─────────────────────────────────────────────────────────────
+let lbPool=[], lbIdx=0;
+function openLB(pool,idx){
+  lbPool=pool; lbIdx=idx;
+  document.getElementById('lb-img').src=q(pool[idx]);
+  document.getElementById('lb-count').textContent=`${idx+1} / ${pool.length}`;
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeLB(){ document.getElementById('lightbox').classList.remove('open'); document.body.style.overflow=''; }
+function lbBg(e){ if(e.target===document.getElementById('lightbox')) closeLB(); }
+function lbNav(d,e){ e.stopPropagation(); lbIdx=(lbIdx+d+lbPool.length)%lbPool.length; document.getElementById('lb-img').src=q(lbPool[lbIdx]); document.getElementById('lb-count').textContent=`${lbIdx+1} / ${lbPool.length}`; }
+
+// ── READER ───────────────────────────────────────────────────────────────
+function openReader(p){
+  const c=document.getElementById('reader-pages');
+  c.innerHTML='';
+  p.pages.forEach(src=>{ const i=document.createElement('img'); i.src=q(src); i.loading='lazy'; i.onerror=function(){this.style.display='none'}; c.appendChild(i); });
+  document.getElementById('reader-title').textContent=p.title;
+  const r=document.getElementById('reader'); r.classList.add('open'); r.scrollTop=0;
+  document.body.style.overflow='hidden';
+}
+function closeReader(){ document.getElementById('reader').classList.remove('open'); document.body.style.overflow=''; }
+
+// ── MODALS ───────────────────────────────────────────────────────────────
+function openModal(id){ document.getElementById(id).classList.add('open'); document.body.style.overflow='hidden'; }
+function closeModal(id){ document.getElementById(id).classList.remove('open'); document.body.style.overflow=''; }
+function modalBg(e,id){ if(e.target===document.getElementById(id)) closeModal(id); }
+
+// ── NSFW ─────────────────────────────────────────────────────────────────
+function unlockNSFW(){
+  document.getElementById('nsfw-gate').style.display='none';
+  const g=document.getElementById('g-nsfw'); g.classList.add('visible');
+  fillNSFW();
+}
+
+// ── UTILS ─────────────────────────────────────────────────────────────────
+function q(s){ return s.replace(/&/g,'&amp;').replace(/"/g,'&quot;'); }
+function doPrint(e){ e.preventDefault(); window.print(); }
+
+// ── KEYBOARD ─────────────────────────────────────────────────────────────
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){
+    closeLB(); closeReader();
+    ['resume-modal','contact-modal'].forEach(id=>closeModal(id));
+    document.body.style.overflow='';
+  }
+  if(document.getElementById('lightbox').classList.contains('open')){
+    if(e.key==='ArrowLeft') lbNav(-1,{stopPropagation:()=>{}});
+    if(e.key==='ArrowRight') lbNav(1,{stopPropagation:()=>{}});
+  }
+});
+
+// ── HERO SLIDESHOW ────────────────────────────────────────────────────────
+(function(){
+  const slides = Array.from(document.querySelectorAll('.hero-slide'))
+    .filter(img => img.complete ? img.naturalWidth > 0 : true);
+  if (slides.length < 2) return;
+  let idx = 0;
+  // filter out broken images before starting
+  const validSlides = [];
+  slides.forEach(img => {
+    if (!img.complete) { img.onload = () => { if(!validSlides.includes(img)) validSlides.push(img); }; }
+    else if (img.naturalWidth > 0) validSlides.push(img);
+  });
+  setInterval(() => {
+    const pool = validSlides.length >= 2 ? validSlides : slides;
+    pool[idx % pool.length].classList.remove('active');
+    idx = (idx + 1) % pool.length;
+    pool[idx].classList.add('active');
+  }, 6000);
+})();
+
+// ── INIT ─────────────────────────────────────────────────────────────────
+RENDERS.all();
+</script>
+</body>
+</html>
