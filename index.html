@@ -498,6 +498,21 @@ footer span{color:var(--gold)}
 .qm-slot.wip     .qm-tag{color:var(--gold)}
 .qm-slot.process .qm-tag{color:#7baeff}
 .qm-slot.final   .qm-tag{color:#4ade80}
+
+/* ── COMMISSION WATERMARK ── */
+.comm-wm{
+  position:absolute;inset:0;pointer-events:none;z-index:3;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='130' height='90'%3E%3Ctext x='65' y='45' dominant-baseline='middle' text-anchor='middle' font-family='Georgia%2Cserif' font-size='15' font-weight='700' letter-spacing='4' fill='rgba(255%2C255%2C255%2C0.22)' transform='rotate(-35%2C65%2C45)'%3ECMS%3C/text%3E%3C/svg%3E");
+  background-size:130px 90px;
+}
+/* corner badge */
+.comm-badge{
+  position:absolute;bottom:7px;right:8px;z-index:4;
+  font-size:.6rem;letter-spacing:.12em;font-weight:700;
+  color:rgba(255,255,255,.45);
+  text-shadow:0 1px 4px rgba(0,0,0,.6);
+  pointer-events:none;user-select:none;
+}
 </style>
 </head>
 <body>
@@ -1045,6 +1060,30 @@ function makeGItem(src, idx, pool) {
   return d;
 }
 
+
+function makeCommGItem(src, idx, pool) {
+  const d = document.createElement('div');
+  d.className = 'gitem';
+  const name = src.split('/').pop().replace(/\.[^.]+$/,'');
+  d.innerHTML = `<div class="gold-corner"></div>
+    <img src="${q(src)}" alt="${name}" loading="lazy"
+      onerror="this.parentNode.style.display='none'"
+      oncontextmenu="return false" ondragstart="return false"
+      style="user-select:none;-webkit-user-drag:none">
+    <div class="comm-wm"></div>
+    <div class="glabel">${name}</div>
+    <div class="comm-badge">© AthenaART</div>`;
+  d.onclick = () => openLB(pool, idx);
+  return d;
+}
+
+function fillCommGrid(id, imgs) {
+  const el = document.getElementById(id);
+  if (!el || el._done) return;
+  imgs.forEach((s, i) => el.appendChild(makeCommGItem(s, i, imgs)));
+  el._done = 1;
+}
+
 function fillGrid(id, imgs) {
   const el = document.getElementById(id);
   if (!el || el._done) return;
@@ -1112,9 +1151,9 @@ function fillNSFW() {
 
 // ── SECTIONS ─────────────────────────────────────────────────────────────
 const RENDERS = {
-  all:     () => { fillGrid('g-illus-a',ILLUS); fillGrid('g-comm-a',COMM); fillProjects('g-proj-a',PROJECTS); },
+  all:     () => { fillGrid('g-illus-a',ILLUS); fillCommGrid('g-comm-a',COMM); fillProjects('g-proj-a',PROJECTS); },
   illus:   () => fillGrid('g-illus-b',ILLUS),
-  comm:    () => fillGrid('g-comm-b',COMM),
+  comm:    () => fillCommGrid('g-comm-b',COMM),
   personal:() => {
     fillProjects('g-taro-b',PROJECTS.filter(p=>p.id==='taro'));
     fillProjects('g-comic-b',PROJECTS.filter(p=>p.id==='comic'));
