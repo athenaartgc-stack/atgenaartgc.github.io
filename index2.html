@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AthenaART — Portfolio</title>
+<title>AthenaART [DEV] — Commission Queue</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230a0a0a'/%3E%3Ctext x='32' y='47' font-family='Georgia,serif' font-size='46' font-weight='700' font-style='italic' text-anchor='middle' fill='%23c9a84c'%3EA%3C/text%3E%3C/svg%3E">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -498,6 +498,51 @@ footer span{color:var(--gold)}
 .qm-slot.wip     .qm-tag{color:var(--gold)}
 .qm-slot.process .qm-tag{color:#7baeff}
 .qm-slot.final   .qm-tag{color:#4ade80}
+
+/* ── DEV BANNER ── */
+.dev-banner{
+  position:fixed;bottom:0;left:0;right:0;z-index:9999;
+  background:#111;border-top:1px solid var(--border);
+  padding:6px 16px;font-size:.7rem;letter-spacing:.09em;
+  color:var(--muted);text-align:center;
+  display:flex;align-items:center;justify-content:center;gap:14px;
+}
+.dev-banner strong{color:var(--gold)}
+.dev-admin-btn{
+  padding:4px 13px;border:1px solid var(--gold);border-radius:3px;
+  background:none;color:var(--gold);font-size:.68rem;cursor:pointer;
+  letter-spacing:.07em;transition:background .2s,color .2s;
+}
+.dev-admin-btn:hover{background:var(--gold);color:#0a0a0a}
+
+/* ── ADMIN MODAL ── */
+.admin-box{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:6px;width:100%;max-width:380px;
+  position:relative;
+}
+.admin-box-head{padding:22px 24px 14px;border-bottom:1px solid var(--border)}
+.admin-box-head h2{font-size:.85rem;font-weight:400;color:var(--gold);letter-spacing:.06em}
+.admin-box-head p{font-size:.74rem;color:var(--muted);margin-top:3px}
+.admin-box-body{padding:18px 24px 24px;display:flex;flex-direction:column;gap:8px}
+.admin-row{
+  display:flex;align-items:center;gap:10px;
+  background:var(--surface2);border:1px solid var(--border);
+  border-radius:3px;padding:9px 12px;
+}
+.admin-row-num{font-size:.72rem;color:var(--muted2);min-width:16px;text-align:center}
+.admin-row select{
+  flex:1;background:var(--bg);border:1px solid var(--border);
+  color:var(--text);border-radius:3px;padding:5px 8px;font-size:.8rem;
+}
+.admin-row select:focus{border-color:var(--gold);outline:none}
+.admin-save{
+  margin-top:8px;width:100%;padding:11px;
+  background:var(--gold);color:#0a0a0a;border:none;border-radius:3px;
+  font-size:.8rem;font-weight:600;letter-spacing:.06em;cursor:pointer;
+  transition:background .2s;
+}
+.admin-save:hover{background:var(--gold2)}
 </style>
 </head>
 <body>
@@ -1229,18 +1274,36 @@ RENDERS.all();
   </div>
 </div>
 
-<script>
-// ── COMMISSION QUEUE ─────────────────────────────────────────────────────
-const QSTATUS = {
-  empty:   {en:'Open',    th:'ว่าง'},
-  wip:     {en:'WIP',     th:'กำลังวาด'},
-  process: {en:'Process', th:'ดำเนินการ'},
-  final:   {en:'Final',   th:'รอคอนเฟิร์ม'},
-};
-const QMAX = 5;
-let qSlots = [];
+<!-- ADMIN MODAL -->
+<div class="modal-wrap" id="admin-modal" onclick="modalBg(event,'admin-modal')" style="padding-bottom:52px">
+  <div class="modal-box admin-box">
+    <button class="modal-close" onclick="closeModal('admin-modal')">×</button>
+    <div class="admin-box-head">
+      <h2>⚙ Queue Admin</h2>
+      <p data-en="Set status for each of the 5 slots." data-th="ตั้งสถานะแต่ละช่องคิว">Set status for each of the 5 slots.</p>
+    </div>
+    <div class="admin-box-body" id="admin-rows"></div>
+  </div>
+</div>
 
-// Default queue — อัปเดตตรงนี้เพื่อเปลี่ยนสถานะ
+<!-- DEV BANNER -->
+<div class="dev-banner">
+  <strong>[DEV]</strong>
+  <span>index2.html</span>
+  <button class="dev-admin-btn" onclick="openModal('admin-modal')">⚙ Admin</button>
+</div>
+
+<script>
+// ── COMMISSION QUEUE ────────────────────────────────────────────────────────
+const S = {
+  empty:   {en:'Open',    th:'ว่าง',       tag:'—'},
+  wip:     {en:'WIP',     th:'กำลังวาด',   tag:'WIP'},
+  process: {en:'Process', th:'ดำเนินการ',  tag:'Process'},
+  final:   {en:'Final',   th:'รอคอนเฟิร์ม', tag:'Final'},
+};
+const MAX = 5;
+let slots = [];
+
 const QUEUE_DEFAULT = [
   {status:'wip'},
   {status:'wip'},
@@ -1249,43 +1312,75 @@ const QUEUE_DEFAULT = [
   {status:'empty'},
 ];
 
-function qLoad(){
+function loadSlots(){
   try{
-    const r=JSON.parse(localStorage.getItem('athena_q')||'null');
-    // ถ้ายังไม่มีข้อมูลใน localStorage ใช้ default
-    if(!r) { qSlots=[...QUEUE_DEFAULT.map(s=>({...s}))]; return; }
-    qSlots=Array.from({length:QMAX},(_,i)=>({status:(r[i]&&r[i].status)||'empty'}));
+    const r = JSON.parse(localStorage.getItem('athena_q')||'null');
+    if(!r){ slots=[...QUEUE_DEFAULT.map(s=>({...s}))]; return; }
+    slots = Array.from({length:MAX},(_,i)=>({status:(r[i]&&r[i].status)||'empty'}));
   }catch(e){
-    qSlots=[...QUEUE_DEFAULT.map(s=>({...s}))];
+    slots=[...QUEUE_DEFAULT.map(s=>({...s}))];
   }
 }
 
-function qRender(){
-  const active=qSlots.filter(s=>s.status!=='empty').length;
-  const el=document.getElementById('qm-active');
-  if(el) el.textContent=active;
-  const wrap=document.getElementById('qm-slots');
+function saveSlots(){ localStorage.setItem('athena_q', JSON.stringify(slots)); }
+
+function renderQueue(){
+  const active = slots.filter(s=>s.status!=='empty').length;
+  const el = document.getElementById('qm-active');
+  if(el) el.textContent = active;
+  const wrap = document.getElementById('qm-slots');
   if(!wrap) return;
   wrap.innerHTML='';
-  qSlots.forEach(slot=>{
-    const cfg=QSTATUS[slot.status]||QSTATUS.empty;
-    const tag=slot.status==='empty'
-      ?`<span class="qm-tag" style="color:var(--border)">—</span>`
-      :`<span class="qm-tag">${currentLang==='th'?cfg.th:cfg.en}</span>`;
-    const d=document.createElement('div');
+  slots.forEach((slot,i)=>{
+    const cfg = S[slot.status]||S.empty;
+    const tag = slot.status==='empty'
+      ? `<span class="qm-tag" style="color:var(--border)">—</span>`
+      : `<span class="qm-tag">${currentLang==='th'?cfg.th:cfg.en}</span>`;
+    const d = document.createElement('div');
     d.className=`qm-slot ${slot.status}`;
     d.innerHTML=`<span class="qm-dot"></span>${tag}`;
     wrap.appendChild(d);
   });
 }
 
-const _qOpen=openModal;
-window.openModal=function(id){
-  if(id==='queue-modal') qRender();
-  _qOpen(id);
+function renderAdmin(){
+  const wrap = document.getElementById('admin-rows');
+  if(!wrap) return;
+  wrap.innerHTML='';
+  slots.forEach((slot,i)=>{
+    const opts = Object.entries(S).map(([k,v])=>
+      `<option value="${k}" ${slot.status===k?'selected':''}>${v.en} / ${v.th}</option>`
+    ).join('');
+    const row = document.createElement('div');
+    row.className='admin-row';
+    row.innerHTML=`<span class="admin-row-num">${i+1}</span><select onchange="slots[${i}].status=this.value">${opts}</select>`;
+    wrap.appendChild(row);
+  });
+  const btn = document.createElement('button');
+  btn.className='admin-save';
+  btn.textContent='💾 บันทึก / Save';
+  btn.onclick=adminSave;
+  wrap.appendChild(btn);
+}
+
+function adminSave(){
+  saveSlots();
+  renderQueue();
+  closeModal('admin-modal');
+  const b=document.querySelector('.dev-admin-btn');
+  if(b){const t=b.textContent;b.textContent='✓ Saved!';setTimeout(()=>b.textContent=t,1600);}
+}
+
+// Hook openModal
+const _open0 = openModal;
+window.openModal = function(id){
+  if(id==='queue-modal') renderQueue();
+  if(id==='admin-modal') renderAdmin();
+  _open0(id);
 };
 
-qLoad();
+// Init
+loadSlots();
 </script>
 
 </body>
