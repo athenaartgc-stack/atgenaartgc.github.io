@@ -448,6 +448,7 @@ footer span{color:var(--gold)}
   .nav-btn{padding:13px 8px;font-size:.68rem;letter-spacing:.04em}
   .btn-resume span,.btn-contact span{display:none}
 }
+<<<<<<< HEAD
 
 /* ── QUEUE BUTTON ── */
 .btn-queue{
@@ -513,6 +514,24 @@ footer span{color:var(--gold)}
   text-shadow:0 1px 4px rgba(0,0,0,.6);
   pointer-events:none;user-select:none;
 }
+
+/* ── LIGHTBOX WATERMARK ── */
+.lb-wm{
+  position:fixed;inset:0;pointer-events:none;z-index:1002;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='110'%3E%3Ctext x='80' y='55' dominant-baseline='middle' text-anchor='middle' font-family='Georgia%2Cserif' font-size='17' font-weight='700' letter-spacing='5' fill='rgba(255%2C255%2C255%2C0.18)' transform='rotate(-35%2C80%2C55)'%3ECMS%3C/text%3E%3C/svg%3E");
+  background-size:160px 110px;
+  display:none;
+}
+.lb-wm.active{display:block}
+.lb-wm-badge{
+  position:fixed;bottom:46px;right:20px;z-index:1003;
+  font-size:.65rem;letter-spacing:.14em;font-weight:700;color:rgba(255,255,255,.4);
+  text-shadow:0 1px 4px rgba(0,0,0,.7);pointer-events:none;user-select:none;
+  display:none;
+}
+.lb-wm-badge.active{display:block}
+=======
+>>>>>>> origin/main
 </style>
 </head>
 <body>
@@ -520,10 +539,15 @@ footer span{color:var(--gold)}
 <!-- HERO -->
 <div class="hero">
   <div class="hero-slides">
+<<<<<<< HEAD
     <img class="hero-slide active" src="Banner.jpg" alt="banner" onerror="this.style.display='none'">
     <img class="hero-slide" src="Banner2.jpg" alt="banner2" onerror="this.style.display='none'">
     <img class="hero-slide" src="Banner3.jpg" alt="banner3" onerror="this.style.display='none'">
     <img class="hero-slide" src="Banner4.jpg" alt="banner4" onerror="this.style.display='none'">
+=======
+    <img class="hero-slide active" src="banner.jpg" alt="banner" onerror="this.style.display='none'">
+    <img class="hero-slide" src="banner2.jpg" alt="banner2" onerror="this.style.display='none'">
+>>>>>>> origin/main
   </div>
   <div class="hero-overlay">
     <div class="hero-text">
@@ -546,10 +570,13 @@ footer span{color:var(--gold)}
   <button class="nav-btn" data-sec="personal" onclick="showSec(this,'personal')" data-en="Personal Projects" data-th="โปรเจคส่วนตัว">Personal Projects</button>
   <button class="nav-btn" data-sec="nsfw" onclick="showSec(this,'nsfw')">18+</button>
   <div class="nav-end">
+<<<<<<< HEAD
     <button class="btn-queue" onclick="openModal('queue-modal')">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
       <span>Queue</span>
     </button>
+=======
+>>>>>>> origin/main
     <button class="btn-lang" id="lang-btn" onclick="toggleLang()">TH</button>
     <button class="btn-contact" onclick="openModal('contact-modal')">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
@@ -674,6 +701,11 @@ footer span{color:var(--gold)}
   <div class="lb-count" id="lb-count"></div>
 </div>
 
+<<<<<<< HEAD
+<div class="lb-wm" id="lb-wm"></div>
+<div class="lb-wm-badge" id="lb-wm-badge">© AthenaART · CMS</div>
+=======
+>>>>>>> origin/main
 <!-- READER -->
 <div class="reader" id="reader">
   <button class="reader-close" onclick="closeReader()">×</button>
@@ -721,10 +753,13 @@ footer span{color:var(--gold)}
           <span data-en="Thai" data-th="ไทย">Thai</span>
         </div>
         <div class="rrow">
+<<<<<<< HEAD
+=======
           <span class="lbl" data-en="Phone" data-th="โทรศัพท์">Phone</span>
           <span>082-970-2451</span>
         </div>
         <div class="rrow">
+>>>>>>> origin/main
           <span class="lbl">Email</span>
           <a href="mailto:ninjta00@gmail.com">ninjta00@gmail.com</a>
         </div>
@@ -787,7 +822,10 @@ footer span{color:var(--gold)}
         <div class="rsec-title" data-en="Contact" data-th="ช่องทางติดต่อ">Contact</div>
         <div class="rrow"><span class="lbl">Instagram</span><a href="https://www.instagram.com/atgenaart/" target="_blank">@atgenaart</a></div>
         <div class="rrow"><span class="lbl">Facebook</span><a href="https://www.facebook.com/sarawutAthena/" target="_blank">Sarawut Kaewlit</a></div>
+<<<<<<< HEAD
         <div class="rrow"><span class="lbl">X (Twitter)</span><a href="https://x.com/AthenaART030819" target="_blank">@AthenaART030819</a></div>
+=======
+>>>>>>> origin/main
         <div class="rrow"><span class="lbl">Vgen</span><a href="https://vgen.co/AthenaART" target="_blank">vgen.co/AthenaART</a></div>
       </div>
     </div>
@@ -834,6 +872,7 @@ footer span{color:var(--gold)}
         </div>
       </a>
 
+<<<<<<< HEAD
       <a class="clink" href="https://x.com/AthenaART030819" target="_blank">
         <div class="clink-icon">
           <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L2.25 2.25h6.988l4.26 5.632zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
@@ -844,6 +883,8 @@ footer span{color:var(--gold)}
         </div>
       </a>
 
+=======
+>>>>>>> origin/main
       <a class="clink" href="https://vgen.co/AthenaART" target="_blank">
         <div class="clink-icon">
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
@@ -853,6 +894,9 @@ footer span{color:var(--gold)}
           <span>vgen.co/AthenaART</span>
         </div>
       </a>
+<<<<<<< HEAD
+      </div>
+=======
 
       <a class="clink" href="tel:0829702451">
         <div class="clink-icon">
@@ -865,6 +909,7 @@ footer span{color:var(--gold)}
       </a>
 
     </div>
+>>>>>>> origin/main
   </div>
 </div>
 
@@ -908,7 +953,10 @@ function toggleLang() {
 const NSFW_DIR = 'NSFW 18+';
 
 const ILLUS = [
+<<<<<<< HEAD
   'Illustration/PG1.jpg',
+=======
+>>>>>>> origin/main
   'Illustration/Illustration3.jpg',
   'Illustration/Illustration2.jpg',
   'Illustration/Illustration8.jpg',
@@ -942,12 +990,18 @@ const ILLUS = [
   'Illustration/sketch20.png',
   'Illustration/ht.png',
   'Illustration/1.jpg',
+<<<<<<< HEAD
   'Illustration/darima.jpg',
 ];
 
 const COMM = [
   'Commission/comm1.jpg',
   'Commission/comm2.png',
+=======
+];
+
+const COMM = [
+>>>>>>> origin/main
   'Commission/comm3.png',
   'Commission/comm4.jpg',
   'Commission/comm5.png',
@@ -1027,7 +1081,11 @@ const COMIC_PAGES = [
 
 const WEBTOON_PAGES = [
   'WBTOON/Cover.jpg',
+<<<<<<< HEAD
   ...[1,2,3,4,5,6,7,8].map(n=>`WBTOON/page${n}.png`),
+=======
+  ...[1,2,3,4,5,6,7].map(n=>`WBTOON/page${n}.png`),
+>>>>>>> origin/main
 ];
 
 const YAIBA_PAGES = [
@@ -1060,6 +1118,7 @@ function makeGItem(src, idx, pool) {
   return d;
 }
 
+<<<<<<< HEAD
 
 function makeCommGItem(src, idx, pool) {
   const d = document.createElement('div');
@@ -1084,6 +1143,8 @@ function fillCommGrid(id, imgs) {
   el._done = 1;
 }
 
+=======
+>>>>>>> origin/main
 function fillGrid(id, imgs) {
   const el = document.getElementById(id);
   if (!el || el._done) return;
@@ -1151,9 +1212,15 @@ function fillNSFW() {
 
 // ── SECTIONS ─────────────────────────────────────────────────────────────
 const RENDERS = {
+<<<<<<< HEAD
   all:     () => { fillGrid('g-illus-a',ILLUS); fillCommGrid('g-comm-a',COMM); fillProjects('g-proj-a',PROJECTS); },
   illus:   () => fillGrid('g-illus-b',ILLUS),
   comm:    () => fillCommGrid('g-comm-b',COMM),
+=======
+  all:     () => { fillGrid('g-illus-a',ILLUS); fillGrid('g-comm-a',COMM); fillProjects('g-proj-a',PROJECTS); },
+  illus:   () => fillGrid('g-illus-b',ILLUS),
+  comm:    () => fillGrid('g-comm-b',COMM),
+>>>>>>> origin/main
   personal:() => {
     fillProjects('g-taro-b',PROJECTS.filter(p=>p.id==='taro'));
     fillProjects('g-comic-b',PROJECTS.filter(p=>p.id==='comic'));
@@ -1225,6 +1292,46 @@ document.addEventListener('keydown',e=>{
   }
 });
 
+<<<<<<< HEAD
+
+// ── IMAGE PROTECTION ──────────────────────────────────────────────────────
+// Block right-click on ALL images sitewide
+document.addEventListener('contextmenu', e => {
+  if (e.target.tagName === 'IMG') e.preventDefault();
+});
+document.addEventListener('dragstart', e => {
+  if (e.target.tagName === 'IMG') e.preventDefault();
+});
+
+// Patch openLB to show watermark when viewing comm images
+const _lbOpen0 = openLB;
+let _lbIsComm = false;
+window.openLB = function(pool, idx) {
+  _lbIsComm = pool === COMM;
+  document.getElementById('lb-wm').classList.toggle('active', _lbIsComm);
+  document.getElementById('lb-wm-badge').classList.toggle('active', _lbIsComm);
+  _lbOpen0(pool, idx);
+};
+
+// Also patch lbNav to keep watermark state
+const _lbNav0 = lbNav;
+window.lbNav = function(d, e) {
+  _lbNav0(d, e);
+  document.getElementById('lb-wm').classList.toggle('active', _lbIsComm);
+  document.getElementById('lb-wm-badge').classList.toggle('active', _lbIsComm);
+};
+
+// Hide watermark when lightbox closes
+const _closeLB0 = closeLB;
+window.closeLB = function() {
+  document.getElementById('lb-wm').classList.remove('active');
+  document.getElementById('lb-wm-badge').classList.remove('active');
+  _lbIsComm = false;
+  _closeLB0();
+};
+
+=======
+>>>>>>> origin/main
 // ── HERO SLIDESHOW ────────────────────────────────────────────────────────
 (function(){
   const slides = Array.from(document.querySelectorAll('.hero-slide'))
@@ -1248,6 +1355,7 @@ document.addEventListener('keydown',e=>{
 // ── INIT ─────────────────────────────────────────────────────────────────
 RENDERS.all();
 </script>
+<<<<<<< HEAD
 
 <!-- QUEUE MODAL -->
 <div class="modal-wrap" id="queue-modal" onclick="modalBg(event,'queue-modal')">
@@ -1327,5 +1435,7 @@ window.openModal=function(id){
 qLoad();
 </script>
 
+=======
+>>>>>>> origin/main
 </body>
 </html>

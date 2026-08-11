@@ -543,6 +543,37 @@ footer span{color:var(--gold)}
   transition:background .2s;
 }
 .admin-save:hover{background:var(--gold2)}
+
+/* ── COMMISSION WATERMARK ── */
+.comm-wm{
+  position:absolute;inset:0;pointer-events:none;z-index:3;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='130' height='90'%3E%3Ctext x='65' y='45' dominant-baseline='middle' text-anchor='middle' font-family='Georgia%2Cserif' font-size='15' font-weight='700' letter-spacing='4' fill='rgba(255%2C255%2C255%2C0.22)' transform='rotate(-35%2C65%2C45)'%3ECMS%3C/text%3E%3C/svg%3E");
+  background-size:130px 90px;
+}
+/* corner badge */
+.comm-badge{
+  position:absolute;bottom:7px;right:8px;z-index:4;
+  font-size:.6rem;letter-spacing:.12em;font-weight:700;
+  color:rgba(255,255,255,.45);
+  text-shadow:0 1px 4px rgba(0,0,0,.6);
+  pointer-events:none;user-select:none;
+}
+
+/* ── LIGHTBOX WATERMARK ── */
+.lb-wm{
+  position:fixed;inset:0;pointer-events:none;z-index:1002;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='110'%3E%3Ctext x='80' y='55' dominant-baseline='middle' text-anchor='middle' font-family='Georgia%2Cserif' font-size='17' font-weight='700' letter-spacing='5' fill='rgba(255%2C255%2C255%2C0.18)' transform='rotate(-35%2C80%2C55)'%3ECMS%3C/text%3E%3C/svg%3E");
+  background-size:160px 110px;
+  display:none;
+}
+.lb-wm.active{display:block}
+.lb-wm-badge{
+  position:fixed;bottom:46px;right:20px;z-index:1003;
+  font-size:.65rem;letter-spacing:.14em;font-weight:700;color:rgba(255,255,255,.4);
+  text-shadow:0 1px 4px rgba(0,0,0,.7);pointer-events:none;user-select:none;
+  display:none;
+}
+.lb-wm-badge.active{display:block}
 </style>
 </head>
 <body>
@@ -704,6 +735,8 @@ footer span{color:var(--gold)}
   <div class="lb-count" id="lb-count"></div>
 </div>
 
+<div class="lb-wm" id="lb-wm"></div>
+<div class="lb-wm-badge" id="lb-wm-badge">© AthenaART · CMS</div>
 <!-- READER -->
 <div class="reader" id="reader">
   <button class="reader-close" onclick="closeReader()">×</button>
@@ -749,10 +782,6 @@ footer span{color:var(--gold)}
         <div class="rrow">
           <span class="lbl" data-en="Nationality" data-th="สัญชาติ">Nationality</span>
           <span data-en="Thai" data-th="ไทย">Thai</span>
-        </div>
-        <div class="rrow">
-          <span class="lbl" data-en="Phone" data-th="โทรศัพท์">Phone</span>
-          <span>082-970-2451</span>
         </div>
         <div class="rrow">
           <span class="lbl">Email</span>
@@ -883,18 +912,7 @@ footer span{color:var(--gold)}
           <span>vgen.co/AthenaART</span>
         </div>
       </a>
-
-      <a class="clink" href="tel:0829702451">
-        <div class="clink-icon">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-        </div>
-        <div class="clink-info">
-          <small data-en="Phone" data-th="โทรศัพท์">Phone</small>
-          <span>082-970-2451</span>
-        </div>
-      </a>
-
-    </div>
+      </div>
   </div>
 </div>
 
@@ -1090,6 +1108,30 @@ function makeGItem(src, idx, pool) {
   return d;
 }
 
+
+function makeCommGItem(src, idx, pool) {
+  const d = document.createElement('div');
+  d.className = 'gitem';
+  const name = src.split('/').pop().replace(/\.[^.]+$/,'');
+  d.innerHTML = `<div class="gold-corner"></div>
+    <img src="${q(src)}" alt="${name}" loading="lazy"
+      onerror="this.parentNode.style.display='none'"
+      oncontextmenu="return false" ondragstart="return false"
+      style="user-select:none;-webkit-user-drag:none">
+    <div class="comm-wm"></div>
+    <div class="glabel">${name}</div>
+    <div class="comm-badge">© AthenaART</div>`;
+  d.onclick = () => openLB(pool, idx);
+  return d;
+}
+
+function fillCommGrid(id, imgs) {
+  const el = document.getElementById(id);
+  if (!el || el._done) return;
+  imgs.forEach((s, i) => el.appendChild(makeCommGItem(s, i, imgs)));
+  el._done = 1;
+}
+
 function fillGrid(id, imgs) {
   const el = document.getElementById(id);
   if (!el || el._done) return;
@@ -1157,9 +1199,9 @@ function fillNSFW() {
 
 // ── SECTIONS ─────────────────────────────────────────────────────────────
 const RENDERS = {
-  all:     () => { fillGrid('g-illus-a',ILLUS); fillGrid('g-comm-a',COMM); fillProjects('g-proj-a',PROJECTS); },
+  all:     () => { fillGrid('g-illus-a',ILLUS); fillCommGrid('g-comm-a',COMM); fillProjects('g-proj-a',PROJECTS); },
   illus:   () => fillGrid('g-illus-b',ILLUS),
-  comm:    () => fillGrid('g-comm-b',COMM),
+  comm:    () => fillCommGrid('g-comm-b',COMM),
   personal:() => {
     fillProjects('g-taro-b',PROJECTS.filter(p=>p.id==='taro'));
     fillProjects('g-comic-b',PROJECTS.filter(p=>p.id==='comic'));
@@ -1230,6 +1272,43 @@ document.addEventListener('keydown',e=>{
     if(e.key==='ArrowRight') lbNav(1,{stopPropagation:()=>{}});
   }
 });
+
+
+// ── IMAGE PROTECTION ──────────────────────────────────────────────────────
+// Block right-click on ALL images sitewide
+document.addEventListener('contextmenu', e => {
+  if (e.target.tagName === 'IMG') e.preventDefault();
+});
+document.addEventListener('dragstart', e => {
+  if (e.target.tagName === 'IMG') e.preventDefault();
+});
+
+// Patch openLB to show watermark when viewing comm images
+const _lbOpen0 = openLB;
+let _lbIsComm = false;
+window.openLB = function(pool, idx) {
+  _lbIsComm = pool === COMM;
+  document.getElementById('lb-wm').classList.toggle('active', _lbIsComm);
+  document.getElementById('lb-wm-badge').classList.toggle('active', _lbIsComm);
+  _lbOpen0(pool, idx);
+};
+
+// Also patch lbNav to keep watermark state
+const _lbNav0 = lbNav;
+window.lbNav = function(d, e) {
+  _lbNav0(d, e);
+  document.getElementById('lb-wm').classList.toggle('active', _lbIsComm);
+  document.getElementById('lb-wm-badge').classList.toggle('active', _lbIsComm);
+};
+
+// Hide watermark when lightbox closes
+const _closeLB0 = closeLB;
+window.closeLB = function() {
+  document.getElementById('lb-wm').classList.remove('active');
+  document.getElementById('lb-wm-badge').classList.remove('active');
+  _lbIsComm = false;
+  _closeLB0();
+};
 
 // ── HERO SLIDESHOW ────────────────────────────────────────────────────────
 (function(){
