@@ -3,7 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AthenaART [DEV] — Commission Queue</title>
+<title>AthenaART — Illustration &amp; Commission Portfolio</title>
+<meta name="description" content="AthenaART portfolio: semi-realistic illustration, character art, comics and commissions.">
+<meta name="theme-color" content="#0a0a0a">
+<link rel="canonical" href="https://athenaartgc-stack.github.io/atgenaartgc.github.io/">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230a0a0a'/%3E%3Ctext x='32' y='47' font-family='Georgia,serif' font-size='46' font-weight='700' font-style='italic' text-anchor='middle' fill='%23c9a84c'%3EA%3C/text%3E%3C/svg%3E">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -574,6 +577,10 @@ footer span{color:var(--gold)}
   display:none;
 }
 .lb-wm-badge.active{display:block}
+
+:focus-visible{outline:2px solid var(--gold);outline-offset:4px}
+@media(max-width:768px){.navbar{flex-wrap:wrap;padding:0 12px}.nav-btn{padding:12px 9px}.nav-end{width:100%;margin:0;padding:8px 0;justify-content:flex-end}.hero{height:85svh;min-height:420px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
@@ -581,10 +588,10 @@ footer span{color:var(--gold)}
 <!-- HERO -->
 <div class="hero">
   <div class="hero-slides">
-    <img class="hero-slide active" src="Banner.jpg" alt="banner" onerror="this.style.display='none'">
-    <img class="hero-slide" src="Banner2.jpg" alt="banner2" onerror="this.style.display='none'">
-    <img class="hero-slide" src="Banner3.jpg" alt="banner3" onerror="this.style.display='none'">
-    <img class="hero-slide" src="Banner4.jpg" alt="banner4" onerror="this.style.display='none'">
+    <img fetchpriority="high" class="hero-slide active" src="assets/web/deca923f2133359a.webp" alt="banner" onerror="this.style.display='none'">
+    <img class="hero-slide" src="assets/web/af94a644e28653f0.webp" alt="banner2" onerror="this.style.display='none'">
+    <img class="hero-slide" src="assets/web/16b201e513c08bce.webp" alt="banner3" onerror="this.style.display='none'">
+    <img class="hero-slide" src="assets/web/c94b240a5f47ec56.webp" alt="banner4" onerror="this.style.display='none'">
   </div>
   <div class="hero-overlay">
     <div class="hero-text">
@@ -612,7 +619,7 @@ footer span{color:var(--gold)}
       <span>Queue</span>
     </button>
     <button class="btn-lang" id="lang-btn" onclick="toggleLang()">TH</button>
-    <button class="btn-contact" onclick="openModal('contact-modal')">
+    <button class="btn-contact" aria-label="Contact / ติดต่อ" onclick="openModal('contact-modal')">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
       <span data-en="Contact" data-th="ติดต่อ">Contact</span>
     </button>
@@ -652,7 +659,7 @@ footer span{color:var(--gold)}
     <div class="section-header">
       <h2>Illustration</h2>
       <span data-en="Personal Work" data-th="งานส่วนตัว">Personal Work</span>
-      <a class="sec-btn sec-btn--fb" href="https://www.facebook.com/sarawutAthena/" target="_blank">
+      <a class="sec-btn sec-btn--fb" href="https://www.facebook.com/sarawutAthena/" target="_blank" rel="noopener noreferrer">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
         <span data-en="View more on Facebook" data-th="ดูเพิ่มเติมบน Facebook">View more on Facebook</span>
       </a>
@@ -665,7 +672,7 @@ footer span{color:var(--gold)}
     <div class="section-header">
       <h2>Commission</h2>
       <span data-en="Client Work" data-th="งานจากลูกค้า">Client Work</span>
-      <a class="sec-btn sec-btn--vgen" href="https://vgen.co/AthenaART" target="_blank">
+      <a class="sec-btn sec-btn--vgen" href="https://vgen.co/AthenaART" target="_blank" rel="noopener noreferrer">
         <img src="VGen logo outline.png" width="16" height="16" style="filter:brightness(0) invert(1);vertical-align:middle">
         <span data-en="Vgen Shop" data-th="หน้าร้าน Vgen">Vgen Shop</span>
       </a>
@@ -751,7 +758,7 @@ footer span{color:var(--gold)}
 
     <div class="resume-top">
       <div class="resume-avatar" id="avatar-wrap">
-        <img src="profile.gif" alt="profile" onerror="this.style.display='none'">
+        <img src="assets/web/6807ad2b9f8fc845.webp" alt="profile" onerror="this.style.display='none'">
       </div>
       <div class="resume-id">
         <h2 data-en="Sarawut Kaewlit" data-th="ศราวุธ แก้วฤทธิ์">Sarawut Kaewlit</h2>
@@ -830,11 +837,11 @@ footer span{color:var(--gold)}
         </div>
         <div class="rrow">
           <span class="lbl">Webtoon Project</span>
-          <span data-en="Designed and illustrated a personal Webtoon series (Story + Art)" data-th="ออกแบบและวาด Webtoon ส่วนตัว (Story + Art)">Designed and illustrated a personal Webtoon series (Story + Art)</span>
+          <span data-en="Coloring and scene art for a Webtoon project" data-th="ลงสีและวาดฉากสำหรับโปรเจกต์ Webtoon">Coloring and scene art for a Webtoon project</span>
         </div>
         <div class="rrow">
           <span class="lbl">Comic Project</span>
-          <span data-en="Created full Comic production (Script, Storyboard, Art)" data-th="สร้าง Comic เต็มรูปแบบ (Script, Storyboard, Art)">Created full Comic production (Script, Storyboard, Art)</span>
+          <span data-en="Coloring and scene art for a comic project" data-th="ลงสีและวาดฉากสำหรับโปรเจกต์ Comic">Coloring and scene art for a comic project</span>
         </div>
         <div class="rrow">
           <span class="lbl">Mini-Thesis</span>
@@ -844,10 +851,10 @@ footer span{color:var(--gold)}
 
       <div class="rsec">
         <div class="rsec-title" data-en="Contact" data-th="ช่องทางติดต่อ">Contact</div>
-        <div class="rrow"><span class="lbl">Instagram</span><a href="https://www.instagram.com/atgenaart/" target="_blank">@atgenaart</a></div>
-        <div class="rrow"><span class="lbl">Facebook</span><a href="https://www.facebook.com/sarawutAthena/" target="_blank">Sarawut Kaewlit</a></div>
-        <div class="rrow"><span class="lbl">X (Twitter)</span><a href="https://x.com/AthenaART030819" target="_blank">@AthenaART030819</a></div>
-        <div class="rrow"><span class="lbl">Vgen</span><a href="https://vgen.co/AthenaART" target="_blank">vgen.co/AthenaART</a></div>
+        <div class="rrow"><span class="lbl">Instagram</span><a href="https://www.instagram.com/atgenaart/" target="_blank" rel="noopener noreferrer">@atgenaart</a></div>
+        <div class="rrow"><span class="lbl">Facebook</span><a href="https://www.facebook.com/sarawutAthena/" target="_blank" rel="noopener noreferrer">Sarawut Kaewlit</a></div>
+        <div class="rrow"><span class="lbl">X (Twitter)</span><a href="https://x.com/AthenaART030819" target="_blank" rel="noopener noreferrer">@AthenaART030819</a></div>
+        <div class="rrow"><span class="lbl">Vgen</span><a href="https://vgen.co/AthenaART" target="_blank" rel="noopener noreferrer">vgen.co/AthenaART</a></div>
       </div>
     </div>
   </div>
@@ -873,7 +880,7 @@ footer span{color:var(--gold)}
         </div>
       </a>
 
-      <a class="clink" href="https://www.instagram.com/atgenaart/" target="_blank">
+      <a class="clink" href="https://www.instagram.com/atgenaart/" target="_blank" rel="noopener noreferrer">
         <div class="clink-icon">
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
         </div>
@@ -883,7 +890,7 @@ footer span{color:var(--gold)}
         </div>
       </a>
 
-      <a class="clink" href="https://www.facebook.com/sarawutAthena/" target="_blank">
+      <a class="clink" href="https://www.facebook.com/sarawutAthena/" target="_blank" rel="noopener noreferrer">
         <div class="clink-icon">
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
         </div>
@@ -893,7 +900,7 @@ footer span{color:var(--gold)}
         </div>
       </a>
 
-      <a class="clink" href="https://x.com/AthenaART030819" target="_blank">
+      <a class="clink" href="https://x.com/AthenaART030819" target="_blank" rel="noopener noreferrer">
         <div class="clink-icon">
           <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L2.25 2.25h6.988l4.26 5.632zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
         </div>
@@ -903,7 +910,7 @@ footer span{color:var(--gold)}
         </div>
       </a>
 
-      <a class="clink" href="https://vgen.co/AthenaART" target="_blank">
+      <a class="clink" href="https://vgen.co/AthenaART" target="_blank" rel="noopener noreferrer">
         <div class="clink-icon">
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
         </div>
@@ -946,6 +953,7 @@ function setLang(lang) {
 
   const activeBtn = document.querySelector('.nav-btn.active');
   if (activeBtn) RENDERS[activeBtn.dataset.sec]();
+  if (typeof renderQueue === 'function') renderQueue();
 }
 
 function toggleLang() {
@@ -953,158 +961,375 @@ function toggleLang() {
 }
 
 // ── DATA ─────────────────────────────────────────────────────────────────
-const NSFW_DIR = 'NSFW 18+';
-
+// Generated web image references; originals remain in their folders.
+const NSFW_DIR = '';
 const ILLUS = [
-  'Illustration/PG1.jpg',
-  'Illustration/Illustration3.jpg',
-  'Illustration/Illustration2.jpg',
-  'Illustration/Illustration8.jpg',
-  'Illustration/Illustration25.png',
-  'Illustration/Illustration39.jpg',
-  'Illustration/Illustration40.jpg',
-  'Illustration/Illustration51.png',
-  'Illustration/Illustration62.png',
-  'Illustration/SuperGirl.jpg',
-  'Illustration/Firefly.png',
-  'Illustration/NEW OC 3.png',
-  'Illustration/sketch.jpg',
-  'Illustration/sketch2.png',
-  'Illustration/sketch3.png',
-  'Illustration/sketch4.jpg',
-  'Illustration/sketch5.jpg',
-  'Illustration/sketch6.jpg',
-  'Illustration/sketch7.jpg',
-  'Illustration/sketch8.jpg',
-  'Illustration/sketch9.jpg',
-  'Illustration/sketch10.jpg',
-  'Illustration/sketch11.png',
-  'Illustration/sketch12.png',
-  'Illustration/sketch13.jpg',
-  'Illustration/sketch14.jpg',
-  'Illustration/sketch15.png',
-  'Illustration/sketch16.png',
-  'Illustration/sketch17.jpg',
-  'Illustration/sketch18.jpg',
-  'Illustration/sketch19.jpg',
-  'Illustration/sketch20.png',
-  'Illustration/ht.png',
-  'Illustration/1.jpg',
-  'Illustration/darima.jpg',
+  "assets/web/39fa859664e63b62.webp",
+  "assets/web/48242ba4f43b66b7.webp",
+  "assets/web/be94a305eb53c47d.webp",
+  "assets/web/63973f58754c4555.webp",
+  "assets/web/eb424dbb1eab9c69.webp",
+  "assets/web/fe8d2f5335c8ae92.webp",
+  "assets/web/8a71222dc88e5226.webp",
+  "assets/web/7c004095245514d3.webp",
+  "assets/web/db4185e46a47a3a1.webp",
+  "assets/web/f72067be9e733af7.webp",
+  "assets/web/cf5f80366d95da77.webp",
+  "assets/web/14aa7f7399b70f45.webp",
+  "assets/web/cdf1d332d4b905f0.webp",
+  "assets/web/5c33e004c7c7176b.webp",
+  "assets/web/e4109ae8c55dcf1b.webp",
+  "assets/web/2537eb8908a9ca76.webp",
+  "assets/web/6c5f8a00bce49f3f.webp",
+  "assets/web/00a7f25872fbc4d6.webp",
+  "assets/web/440a3c071f6a6854.webp",
+  "assets/web/b5c194f9d51a9008.webp",
+  "assets/web/fbde29879e4eb3f3.webp"
 ];
-
 const COMM = [
-  'Commission/comm1.jpg',
-  'Commission/comm2.png',
-  'Commission/comm3.png',
-  'Commission/comm4.jpg',
-  'Commission/comm5.png',
-  'Commission/comm6.png',
-  'Commission/comm7.jpg',
-  'Commission/comm8.png',
-  'Commission/comm_hug.png',
-  'Commission/comm_scythe.jpg',
-  'Commission/comm_blue.png',
-  'Commission/comm_aeva.png',
-  'Commission/comm_golden.png',
-  'Commission/full body.png',
-  'Commission/full body 2.png',
-  'Commission/Mavuika.jpg',
-  'Commission/CRD 2.png',
-  'Commission/Illustration4.png',
-  'Commission/card_cover.jpg',
-  'Commission/card_promo6.png',
-  'Commission/card_athena.jpg',
-  'Commission/card_zeus.jpg',
-  'Commission/card_artemis.jpg',
-  'Commission/card_apollo.jpg',
-  'Commission/card_aphrodite.jpg',
-  'Commission/card_hera.jpg',
-  'Commission/card_hermes.jpg',
-  'Commission/card_dionysus.jpg',
-  'Commission/card_ares.jpg',
-  'Commission/card_hephaestus.jpg',
-  'Commission/card_poseidon.jpg',
+  "assets/web/03572d48b6c98c6e.webp",
+  "assets/web/45a380045622724a.webp",
+  "assets/web/314abe4543284b41.webp",
+  "assets/web/61a5213aeb3ac0ce.webp",
+  "assets/web/a977591b5f81ee98.webp",
+  "assets/web/90fd036ca43d10fa.webp",
+  "assets/web/210f992ef713a2f5.webp",
+  "assets/web/ae7b3666c3d77a5a.webp",
+  "assets/web/4bd76eaaa017e534.webp",
+  "assets/web/fff25e13504e6c98.webp",
+  "assets/web/958d270eefd18f34.webp",
+  "assets/web/5b1fccc73050034e.webp"
 ];
-
 const NSFW_FILES = [
-  'nsfw_client1.jpg',
-  'nsfw_client2.png',
-  'nsfw_client3.jpg',
-  'nsfw_client4.png',
-  'nsfw_client5.jpg',
-  'nsfw_client6.png',
-  'nsfw_client7.png',
+  "assets/web/166c9f28899d4b78.webp",
+  "assets/web/425dfa5df820a1a5.webp",
+  "assets/web/3358dfef10a89883.webp",
+  "assets/web/f34f0f3484c35e40.webp",
+  "assets/web/53a5aa0e29974200.webp",
+  "assets/web/c3e71af32bfde5e6.webp",
+  "assets/web/2295e973828be519.webp"
 ];
-
-const THESIS3_PAGES = [
-  'Mini Thesis Year 3/cover.jpg',
-  ...([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18].map(n=>`Mini Thesis Year 3/${n}.jpg`)),
-  'Mini Thesis Year 3/18-2.jpg',
-  ...[19,20,21,22,23,24,25,26,27,28,29,30,31,32,34,35].map(n=>`Mini Thesis Year 3/${n}.jpg`),
-];
-
-const THESIS4_PAGES = [
-  'Thesis Year 4/Cover.jpg',
-  ...[1,2,3,4,5,6,7,8].map(n=>`Thesis Year 4/${n}.jpg`),
-  'Thesis Year 4/9.png',
-];
-
-const TARO_PAGES = [
-  'Taro CMS/Athena card.jpg',
-  'Taro CMS/Zeus.jpg',
-  'Taro CMS/Apollo playing cards.jpg',
-  'Taro CMS/Aphrodite playing card.jpg',
-  'Taro CMS/Atemis card.jpg',
-  'Taro CMS/Hephaestus card.jpg',
-  'Taro CMS/Atlas cards.jpg',
-  'Taro CMS/Demeter card.jpg',
-  'Taro CMS/Helen\'s card.jpg',
-  'Taro CMS/Hemera Cards.jpg',
-  'Taro CMS/Hemiros card.jpg',
-  'Taro CMS/Hermit Cards.jpg',
-  'Taro CMS/Iris card.jpg',
-  'Taro CMS/Siren Cards.jpg',
-  'Taro CMS/The Diodysus card.jpg',
-  'Taro CMS/Youth Cards.jpg',
-];
-
-const COMIC_PAGES = [
-  ...[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20].map(n=>`COMIC/${n}.png`),
-];
-
-const WEBTOON_PAGES = [
-  'WBTOON/Cover.jpg',
-  ...[1,2,3,4,5,6,7,8].map(n=>`WBTOON/page${n}.png`),
-];
-
-const YAIBA_PAGES = [
-  'OC yaiba/Yaiba.jpg',
-  ...[0,1,2,3,4,5,6,7,8,9,10,11,12].map(n=>`OC yaiba/Yaiba${n}.jpg`),
-];
-
 const PROJECTS = [
-  {id:'taro',    title:'Taro CMS',       desc:'Commission · Tarot & Oracle Card Deck', cover:'Taro CMS/Athena card.jpg', pages:TARO_PAGES,
-   note_en:'The largest commission project of the year — <strong>Tarot & Oracle Card Deck, 100 cards total</strong><br>Drawing and design phase <strong>100% complete</strong>. Currently in production stage.',
-   note_th:'คอมมิชชั่นโปรเจคใหญ่ที่สุดของปี — <strong>ไพ่ทาโร่และออราเคิล รวม 100 ใบ</strong><br>ขั้นตอนการ<strong>วาดและออกแบบครบ 100%</strong> แล้ว ปัจจุบันเข้าสู่ช่วงการผลิตจริง'},
-  {id:'webtoon', title:'WBTOON Project', desc:'Webtoon · Coloring & Scene Art', cover:'WBTOON/Cover.jpg', pages:WEBTOON_PAGES,
-   note_en:'<strong>Line art</strong> by another artist — I was responsible for all <strong>coloring and scene art</strong>, including character color design and backgrounds for every page.',
-   note_th:'<strong>ลายเส้น</strong>โดยศิลปินท่านอื่น &mdash; ผมรับผิดชอบงาน<strong>ลงสีและวาดฉาก</strong>ทั้งหมด รวมถึงออกแบบสีตัวละครและฉากหลังทุกหน้า'},
-  {id:'comic',   title:'Comic Project',  desc:'Comic · Coloring & Scene Art',   cover:'COMIC/1.png',    pages:COMIC_PAGES,
-   note_en:'<strong>Line art</strong> by another artist — I was responsible for all <strong>coloring and scene art</strong>, including character color design and backgrounds for every page.',
-   note_th:'<strong>ลายเส้น</strong>โดยศิลปินท่านอื่น &mdash; ผมรับผิดชอบงาน<strong>ลงสีและวาดฉาก</strong>ทั้งหมด รวมถึงออกแบบสีตัวละครและฉากหลังทุกหน้า'},
-  {id:'yaiba',   title:'OC Yaiba',       desc:'Original Character · Illustration', cover:'OC yaiba/Yaiba.jpg', pages:YAIBA_PAGES},
-  {id:'thesis3', title:'Mini-Thesis Year 3',  desc:'SPU · Digital Multimedia Arts', cover:'Mini Thesis Year 3/cover.jpg', pages:THESIS3_PAGES},
-  {id:'thesis4', title:'Mini-Thesis Year 4',  desc:'SPU · Digital Multimedia Arts', cover:'Thesis Year 4/Cover.jpg',  pages:THESIS4_PAGES},
+  {
+    "id": "taro",
+    "title": "Taro CMS",
+    "desc": "Commission · Tarot & Oracle Card Deck",
+    "cover": "assets/web/91b8aff200f97d06.webp",
+    "pages": [
+      "assets/web/91b8aff200f97d06.webp",
+      "assets/web/94ee9ff070a81c0b.webp",
+      "assets/web/5f9c66ac909043ca.webp",
+      "assets/web/f989e71ff83edcb0.webp",
+      "assets/web/d45fba974c1c6ef7.webp",
+      "assets/web/45f7635eacb62061.webp",
+      "assets/web/73cc6d78c4ceced3.webp",
+      "assets/web/291897c81c21affa.webp",
+      "assets/web/901d08c4a45919bb.webp",
+      "assets/web/952079beec8bed79.webp",
+      "assets/web/f70812bad03628e3.webp",
+      "assets/web/09e326b65f333fe1.webp",
+      "assets/web/f8e6097afc25392f.webp",
+      "assets/web/57d64e1804c8c88b.webp",
+      "assets/web/a78d07bc9b7a18e1.webp",
+      "assets/web/44472ba98a3d687f.webp"
+    ],
+    "note_en": "The largest commission project of the year — <strong>Tarot & Oracle Card Deck, 100 cards total</strong><br>Drawing and design phase <strong>100% complete</strong>. Currently in production stage.",
+    "note_th": "คอมมิชชั่นโปรเจคใหญ่ที่สุดของปี — <strong>ไพ่ทาโร่และออราเคิล รวม 100 ใบ</strong><br>ขั้นตอนการ<strong>วาดและออกแบบครบ 100%</strong> แล้ว ปัจจุบันเข้าสู่ช่วงการผลิตจริง"
+  },
+  {
+    "id": "webtoon",
+    "title": "WBTOON Project",
+    "desc": "Webtoon · Coloring & Scene Art",
+    "cover": "assets/web/52f02108b85b1c17.webp",
+    "pages": [
+      "assets/web/52f02108b85b1c17.webp",
+      "assets/web/a2cc7b8c441d01f8.jpg",
+      "assets/web/0780d9abdd189f66.jpg",
+      "assets/web/43ea3c1809485a4a.jpg",
+      "assets/web/69b44fbd273eeab8.jpg",
+      "assets/web/b1ad090e4e8facf8.jpg",
+      "assets/web/63ae870718f47c3e.jpg",
+      "assets/web/cf2fe987d16776b2.jpg"
+    ],
+    "note_en": "<strong>Line art</strong> by another artist — I was responsible for all <strong>coloring and scene art</strong>, including character color design and backgrounds for every page.",
+    "note_th": "<strong>ลายเส้น</strong>โดยศิลปินท่านอื่น &mdash; ผมรับผิดชอบงาน<strong>ลงสีและวาดฉาก</strong>ทั้งหมด รวมถึงออกแบบสีตัวละครและฉากหลังทุกหน้า"
+  },
+  {
+    "id": "comic",
+    "title": "Comic Project",
+    "desc": "Comic · Coloring & Scene Art",
+    "cover": "assets/web/30b5bdab67fcaab0.webp",
+    "pages": [
+      "assets/web/30b5bdab67fcaab0.webp",
+      "assets/web/6271074b690e7a5a.webp",
+      "assets/web/d7f3a7e992131dda.webp",
+      "assets/web/fd49d03b687e04fe.webp",
+      "assets/web/dd2e2e6ee39fb7a5.webp",
+      "assets/web/7d158a41137ee158.webp",
+      "assets/web/5be3f613705ab639.webp",
+      "assets/web/64eeb96563435bf6.webp",
+      "assets/web/b4a13dbc1b1970f9.webp",
+      "assets/web/6cf80cc05c8cb0d3.webp",
+      "assets/web/8e29bd8e5c5a1af7.webp",
+      "assets/web/bdb60c3dd4507e73.webp",
+      "assets/web/48d876ddadc8c7a4.webp",
+      "assets/web/d4e68e70cdc4d45a.webp",
+      "assets/web/e8af09f9bd55928c.webp",
+      "assets/web/5aa4b325d9373262.webp",
+      "assets/web/1c2ffe1b60e3848a.webp",
+      "assets/web/375818367a878214.webp",
+      "assets/web/dffa1fdc6a43b3f2.webp",
+      "assets/web/bccad1915b7e6072.webp"
+    ],
+    "note_en": "<strong>Line art</strong> by another artist — I was responsible for all <strong>coloring and scene art</strong>, including character color design and backgrounds for every page.",
+    "note_th": "<strong>ลายเส้น</strong>โดยศิลปินท่านอื่น &mdash; ผมรับผิดชอบงาน<strong>ลงสีและวาดฉาก</strong>ทั้งหมด รวมถึงออกแบบสีตัวละครและฉากหลังทุกหน้า"
+  },
+  {
+    "id": "yaiba",
+    "title": "OC Yaiba",
+    "desc": "Original Character · Illustration",
+    "cover": "assets/web/059165aef5b1f856.webp",
+    "pages": [
+      "assets/web/059165aef5b1f856.webp",
+      "assets/web/1d4965b5180d59ba.webp",
+      "assets/web/028948425588ac6e.webp",
+      "assets/web/8f4310ba61772a9a.webp",
+      "assets/web/63e6a546d311b5ac.webp",
+      "assets/web/beb83587c17e6ebf.webp",
+      "assets/web/6618e6904258f1ff.webp",
+      "assets/web/6210eb9bfdce2932.webp",
+      "assets/web/c5f54b49b9c7ac0e.webp",
+      "assets/web/d9d5f10baa0fea4a.webp",
+      "assets/web/0cb3ad1b8e79f329.webp",
+      "assets/web/9c573ed23cb72660.webp",
+      "assets/web/3745a85b09ea1e8e.webp",
+      "assets/web/8fa5ae8eef1c7188.webp"
+    ]
+  },
+  {
+    "id": "thesis3",
+    "title": "Mini-Thesis Year 3",
+    "desc": "SPU · Digital Multimedia Arts",
+    "cover": "assets/web/5a46de61db80753e.webp",
+    "pages": [
+      "assets/web/5a46de61db80753e.webp",
+      "assets/web/69ef3cb0cec7ae17.webp",
+      "assets/web/431e9bba31807217.webp",
+      "assets/web/b34fa639c671577a.webp",
+      "assets/web/cad1126df14a020b.webp",
+      "assets/web/61ea1f6332bfb394.webp",
+      "assets/web/a7a609ba4c0bf60f.webp",
+      "assets/web/4916d95b9c400a7c.webp",
+      "assets/web/b92fa74749bd4c0f.webp",
+      "assets/web/bb98891f01d63d08.webp",
+      "assets/web/f4a4803a007d231d.webp",
+      "assets/web/448ee083774c72b2.webp",
+      "assets/web/3fd16b1e6f268f1c.webp",
+      "assets/web/020280f6ecc10358.webp",
+      "assets/web/d10d8853810a801b.webp",
+      "assets/web/5636a6e673858ce4.webp",
+      "assets/web/ed228cbc5435d424.webp",
+      "assets/web/d98c011886c76852.webp",
+      "assets/web/2df26e992e5202e6.webp",
+      "assets/web/b7dcc0b133978ab5.webp",
+      "assets/web/6113367f5399d68b.webp",
+      "assets/web/a8afbb99f8337c75.webp",
+      "assets/web/e7a8a53f50f2464a.webp",
+      "assets/web/df72b6cb7a7cba3d.webp",
+      "assets/web/d5d4bc290b68f3b1.webp",
+      "assets/web/c33430274e82e5c7.webp",
+      "assets/web/674a18a8789ef66b.webp",
+      "assets/web/7bee3b24d6d3abe8.webp",
+      "assets/web/bc47b1cc18dc6ec0.webp",
+      "assets/web/53eb4aea534b2bf8.webp",
+      "assets/web/25c0f1b21a339679.webp",
+      "assets/web/7a50a4d54b31c9a3.webp",
+      "assets/web/f89aa62979eab565.webp",
+      "assets/web/91ac9dc0bef4b090.webp",
+      "assets/web/c61d91e04764c8ec.webp"
+    ]
+  },
+  {
+    "id": "thesis4",
+    "title": "Mini-Thesis Year 4",
+    "desc": "SPU · Digital Multimedia Arts",
+    "cover": "assets/web/c6424c332351ab2b.webp",
+    "pages": [
+      "assets/web/c6424c332351ab2b.webp",
+      "assets/web/84a567e4a44db798.webp",
+      "assets/web/b48843a28dbb199d.webp",
+      "assets/web/36ac80122f4f4967.webp",
+      "assets/web/4ee5efd3bc871b70.webp",
+      "assets/web/c093d945c849f1d0.webp",
+      "assets/web/cdc278600275c94e.webp",
+      "assets/web/b23dbb8fadc3628d.webp",
+      "assets/web/f56687cd76eb9cf3.webp",
+      "assets/web/7fbfb0fe9ef4ac15.webp"
+    ]
+  }
 ];
+const THUMBS = {
+  "assets/web/deca923f2133359a.webp": "assets/web/deca923f2133359a-thumb.webp",
+  "assets/web/af94a644e28653f0.webp": "assets/web/af94a644e28653f0-thumb.webp",
+  "assets/web/16b201e513c08bce.webp": "assets/web/16b201e513c08bce-thumb.webp",
+  "assets/web/c94b240a5f47ec56.webp": "assets/web/c94b240a5f47ec56-thumb.webp",
+  "assets/web/30b5bdab67fcaab0.webp": "assets/web/30b5bdab67fcaab0-thumb.webp",
+  "assets/web/6cf80cc05c8cb0d3.webp": "assets/web/6cf80cc05c8cb0d3-thumb.webp",
+  "assets/web/8e29bd8e5c5a1af7.webp": "assets/web/8e29bd8e5c5a1af7-thumb.webp",
+  "assets/web/bdb60c3dd4507e73.webp": "assets/web/bdb60c3dd4507e73-thumb.webp",
+  "assets/web/48d876ddadc8c7a4.webp": "assets/web/48d876ddadc8c7a4-thumb.webp",
+  "assets/web/d4e68e70cdc4d45a.webp": "assets/web/d4e68e70cdc4d45a-thumb.webp",
+  "assets/web/e8af09f9bd55928c.webp": "assets/web/e8af09f9bd55928c-thumb.webp",
+  "assets/web/5aa4b325d9373262.webp": "assets/web/5aa4b325d9373262-thumb.webp",
+  "assets/web/1c2ffe1b60e3848a.webp": "assets/web/1c2ffe1b60e3848a-thumb.webp",
+  "assets/web/375818367a878214.webp": "assets/web/375818367a878214-thumb.webp",
+  "assets/web/dffa1fdc6a43b3f2.webp": "assets/web/dffa1fdc6a43b3f2-thumb.webp",
+  "assets/web/6271074b690e7a5a.webp": "assets/web/6271074b690e7a5a-thumb.webp",
+  "assets/web/bccad1915b7e6072.webp": "assets/web/bccad1915b7e6072-thumb.webp",
+  "assets/web/d7f3a7e992131dda.webp": "assets/web/d7f3a7e992131dda-thumb.webp",
+  "assets/web/fd49d03b687e04fe.webp": "assets/web/fd49d03b687e04fe-thumb.webp",
+  "assets/web/dd2e2e6ee39fb7a5.webp": "assets/web/dd2e2e6ee39fb7a5-thumb.webp",
+  "assets/web/7d158a41137ee158.webp": "assets/web/7d158a41137ee158-thumb.webp",
+  "assets/web/5be3f613705ab639.webp": "assets/web/5be3f613705ab639-thumb.webp",
+  "assets/web/64eeb96563435bf6.webp": "assets/web/64eeb96563435bf6-thumb.webp",
+  "assets/web/b4a13dbc1b1970f9.webp": "assets/web/b4a13dbc1b1970f9-thumb.webp",
+  "assets/web/03572d48b6c98c6e.webp": "assets/web/03572d48b6c98c6e-thumb.webp",
+  "assets/web/45a380045622724a.webp": "assets/web/45a380045622724a-thumb.webp",
+  "assets/web/314abe4543284b41.webp": "assets/web/314abe4543284b41-thumb.webp",
+  "assets/web/61a5213aeb3ac0ce.webp": "assets/web/61a5213aeb3ac0ce-thumb.webp",
+  "assets/web/a977591b5f81ee98.webp": "assets/web/a977591b5f81ee98-thumb.webp",
+  "assets/web/90fd036ca43d10fa.webp": "assets/web/90fd036ca43d10fa-thumb.webp",
+  "assets/web/210f992ef713a2f5.webp": "assets/web/210f992ef713a2f5-thumb.webp",
+  "assets/web/ae7b3666c3d77a5a.webp": "assets/web/ae7b3666c3d77a5a-thumb.webp",
+  "assets/web/958d270eefd18f34.webp": "assets/web/958d270eefd18f34-thumb.webp",
+  "assets/web/fff25e13504e6c98.webp": "assets/web/fff25e13504e6c98-thumb.webp",
+  "assets/web/5b1fccc73050034e.webp": "assets/web/5b1fccc73050034e-thumb.webp",
+  "assets/web/4bd76eaaa017e534.webp": "assets/web/4bd76eaaa017e534-thumb.webp",
+  "assets/web/48242ba4f43b66b7.webp": "assets/web/48242ba4f43b66b7-thumb.webp",
+  "assets/web/39fa859664e63b62.webp": "assets/web/39fa859664e63b62-thumb.webp",
+  "assets/web/fbde29879e4eb3f3.webp": "assets/web/fbde29879e4eb3f3-thumb.webp",
+  "assets/web/be94a305eb53c47d.webp": "assets/web/be94a305eb53c47d-thumb.webp",
+  "assets/web/14aa7f7399b70f45.webp": "assets/web/14aa7f7399b70f45-thumb.webp",
+  "assets/web/cdf1d332d4b905f0.webp": "assets/web/cdf1d332d4b905f0-thumb.webp",
+  "assets/web/5c33e004c7c7176b.webp": "assets/web/5c33e004c7c7176b-thumb.webp",
+  "assets/web/e4109ae8c55dcf1b.webp": "assets/web/e4109ae8c55dcf1b-thumb.webp",
+  "assets/web/2537eb8908a9ca76.webp": "assets/web/2537eb8908a9ca76-thumb.webp",
+  "assets/web/6c5f8a00bce49f3f.webp": "assets/web/6c5f8a00bce49f3f-thumb.webp",
+  "assets/web/00a7f25872fbc4d6.webp": "assets/web/00a7f25872fbc4d6-thumb.webp",
+  "assets/web/440a3c071f6a6854.webp": "assets/web/440a3c071f6a6854-thumb.webp",
+  "assets/web/63973f58754c4555.webp": "assets/web/63973f58754c4555-thumb.webp",
+  "assets/web/b5c194f9d51a9008.webp": "assets/web/b5c194f9d51a9008-thumb.webp",
+  "assets/web/eb424dbb1eab9c69.webp": "assets/web/eb424dbb1eab9c69-thumb.webp",
+  "assets/web/fe8d2f5335c8ae92.webp": "assets/web/fe8d2f5335c8ae92-thumb.webp",
+  "assets/web/8a71222dc88e5226.webp": "assets/web/8a71222dc88e5226-thumb.webp",
+  "assets/web/7c004095245514d3.webp": "assets/web/7c004095245514d3-thumb.webp",
+  "assets/web/db4185e46a47a3a1.webp": "assets/web/db4185e46a47a3a1-thumb.webp",
+  "assets/web/f72067be9e733af7.webp": "assets/web/f72067be9e733af7-thumb.webp",
+  "assets/web/cf5f80366d95da77.webp": "assets/web/cf5f80366d95da77-thumb.webp",
+  "assets/web/69ef3cb0cec7ae17.webp": "assets/web/69ef3cb0cec7ae17-thumb.webp",
+  "assets/web/bb98891f01d63d08.webp": "assets/web/bb98891f01d63d08-thumb.webp",
+  "assets/web/f4a4803a007d231d.webp": "assets/web/f4a4803a007d231d-thumb.webp",
+  "assets/web/448ee083774c72b2.webp": "assets/web/448ee083774c72b2-thumb.webp",
+  "assets/web/3fd16b1e6f268f1c.webp": "assets/web/3fd16b1e6f268f1c-thumb.webp",
+  "assets/web/020280f6ecc10358.webp": "assets/web/020280f6ecc10358-thumb.webp",
+  "assets/web/d10d8853810a801b.webp": "assets/web/d10d8853810a801b-thumb.webp",
+  "assets/web/5636a6e673858ce4.webp": "assets/web/5636a6e673858ce4-thumb.webp",
+  "assets/web/ed228cbc5435d424.webp": "assets/web/ed228cbc5435d424-thumb.webp",
+  "assets/web/2df26e992e5202e6.webp": "assets/web/2df26e992e5202e6-thumb.webp",
+  "assets/web/d98c011886c76852.webp": "assets/web/d98c011886c76852-thumb.webp",
+  "assets/web/b7dcc0b133978ab5.webp": "assets/web/b7dcc0b133978ab5-thumb.webp",
+  "assets/web/6113367f5399d68b.webp": "assets/web/6113367f5399d68b-thumb.webp",
+  "assets/web/a8afbb99f8337c75.webp": "assets/web/a8afbb99f8337c75-thumb.webp",
+  "assets/web/e7a8a53f50f2464a.webp": "assets/web/e7a8a53f50f2464a-thumb.webp",
+  "assets/web/df72b6cb7a7cba3d.webp": "assets/web/df72b6cb7a7cba3d-thumb.webp",
+  "assets/web/d5d4bc290b68f3b1.webp": "assets/web/d5d4bc290b68f3b1-thumb.webp",
+  "assets/web/c33430274e82e5c7.webp": "assets/web/c33430274e82e5c7-thumb.webp",
+  "assets/web/674a18a8789ef66b.webp": "assets/web/674a18a8789ef66b-thumb.webp",
+  "assets/web/7bee3b24d6d3abe8.webp": "assets/web/7bee3b24d6d3abe8-thumb.webp",
+  "assets/web/bc47b1cc18dc6ec0.webp": "assets/web/bc47b1cc18dc6ec0-thumb.webp",
+  "assets/web/53eb4aea534b2bf8.webp": "assets/web/53eb4aea534b2bf8-thumb.webp",
+  "assets/web/431e9bba31807217.webp": "assets/web/431e9bba31807217-thumb.webp",
+  "assets/web/25c0f1b21a339679.webp": "assets/web/25c0f1b21a339679-thumb.webp",
+  "assets/web/7a50a4d54b31c9a3.webp": "assets/web/7a50a4d54b31c9a3-thumb.webp",
+  "assets/web/f89aa62979eab565.webp": "assets/web/f89aa62979eab565-thumb.webp",
+  "assets/web/91ac9dc0bef4b090.webp": "assets/web/91ac9dc0bef4b090-thumb.webp",
+  "assets/web/c61d91e04764c8ec.webp": "assets/web/c61d91e04764c8ec-thumb.webp",
+  "assets/web/b34fa639c671577a.webp": "assets/web/b34fa639c671577a-thumb.webp",
+  "assets/web/cad1126df14a020b.webp": "assets/web/cad1126df14a020b-thumb.webp",
+  "assets/web/61ea1f6332bfb394.webp": "assets/web/61ea1f6332bfb394-thumb.webp",
+  "assets/web/a7a609ba4c0bf60f.webp": "assets/web/a7a609ba4c0bf60f-thumb.webp",
+  "assets/web/4916d95b9c400a7c.webp": "assets/web/4916d95b9c400a7c-thumb.webp",
+  "assets/web/b92fa74749bd4c0f.webp": "assets/web/b92fa74749bd4c0f-thumb.webp",
+  "assets/web/5a46de61db80753e.webp": "assets/web/5a46de61db80753e-thumb.webp",
+  "assets/web/166c9f28899d4b78.webp": "assets/web/166c9f28899d4b78-thumb.webp",
+  "assets/web/425dfa5df820a1a5.webp": "assets/web/425dfa5df820a1a5-thumb.webp",
+  "assets/web/3358dfef10a89883.webp": "assets/web/3358dfef10a89883-thumb.webp",
+  "assets/web/f34f0f3484c35e40.webp": "assets/web/f34f0f3484c35e40-thumb.webp",
+  "assets/web/53a5aa0e29974200.webp": "assets/web/53a5aa0e29974200-thumb.webp",
+  "assets/web/c3e71af32bfde5e6.webp": "assets/web/c3e71af32bfde5e6-thumb.webp",
+  "assets/web/2295e973828be519.webp": "assets/web/2295e973828be519-thumb.webp",
+  "assets/web/059165aef5b1f856.webp": "assets/web/059165aef5b1f856-thumb.webp",
+  "assets/web/1d4965b5180d59ba.webp": "assets/web/1d4965b5180d59ba-thumb.webp",
+  "assets/web/028948425588ac6e.webp": "assets/web/028948425588ac6e-thumb.webp",
+  "assets/web/9c573ed23cb72660.webp": "assets/web/9c573ed23cb72660-thumb.webp",
+  "assets/web/3745a85b09ea1e8e.webp": "assets/web/3745a85b09ea1e8e-thumb.webp",
+  "assets/web/8fa5ae8eef1c7188.webp": "assets/web/8fa5ae8eef1c7188-thumb.webp",
+  "assets/web/8f4310ba61772a9a.webp": "assets/web/8f4310ba61772a9a-thumb.webp",
+  "assets/web/63e6a546d311b5ac.webp": "assets/web/63e6a546d311b5ac-thumb.webp",
+  "assets/web/beb83587c17e6ebf.webp": "assets/web/beb83587c17e6ebf-thumb.webp",
+  "assets/web/6618e6904258f1ff.webp": "assets/web/6618e6904258f1ff-thumb.webp",
+  "assets/web/6210eb9bfdce2932.webp": "assets/web/6210eb9bfdce2932-thumb.webp",
+  "assets/web/c5f54b49b9c7ac0e.webp": "assets/web/c5f54b49b9c7ac0e-thumb.webp",
+  "assets/web/d9d5f10baa0fea4a.webp": "assets/web/d9d5f10baa0fea4a-thumb.webp",
+  "assets/web/0cb3ad1b8e79f329.webp": "assets/web/0cb3ad1b8e79f329-thumb.webp",
+  "assets/web/f989e71ff83edcb0.webp": "assets/web/f989e71ff83edcb0-thumb.webp",
+  "assets/web/5f9c66ac909043ca.webp": "assets/web/5f9c66ac909043ca-thumb.webp",
+  "assets/web/d45fba974c1c6ef7.webp": "assets/web/d45fba974c1c6ef7-thumb.webp",
+  "assets/web/91b8aff200f97d06.webp": "assets/web/91b8aff200f97d06-thumb.webp",
+  "assets/web/73cc6d78c4ceced3.webp": "assets/web/73cc6d78c4ceced3-thumb.webp",
+  "assets/web/291897c81c21affa.webp": "assets/web/291897c81c21affa-thumb.webp",
+  "assets/web/901d08c4a45919bb.webp": "assets/web/901d08c4a45919bb-thumb.webp",
+  "assets/web/952079beec8bed79.webp": "assets/web/952079beec8bed79-thumb.webp",
+  "assets/web/f70812bad03628e3.webp": "assets/web/f70812bad03628e3-thumb.webp",
+  "assets/web/45f7635eacb62061.webp": "assets/web/45f7635eacb62061-thumb.webp",
+  "assets/web/09e326b65f333fe1.webp": "assets/web/09e326b65f333fe1-thumb.webp",
+  "assets/web/f8e6097afc25392f.webp": "assets/web/f8e6097afc25392f-thumb.webp",
+  "assets/web/57d64e1804c8c88b.webp": "assets/web/57d64e1804c8c88b-thumb.webp",
+  "assets/web/a78d07bc9b7a18e1.webp": "assets/web/a78d07bc9b7a18e1-thumb.webp",
+  "assets/web/44472ba98a3d687f.webp": "assets/web/44472ba98a3d687f-thumb.webp",
+  "assets/web/94ee9ff070a81c0b.webp": "assets/web/94ee9ff070a81c0b-thumb.webp",
+  "assets/web/84a567e4a44db798.webp": "assets/web/84a567e4a44db798-thumb.webp",
+  "assets/web/b48843a28dbb199d.webp": "assets/web/b48843a28dbb199d-thumb.webp",
+  "assets/web/36ac80122f4f4967.webp": "assets/web/36ac80122f4f4967-thumb.webp",
+  "assets/web/4ee5efd3bc871b70.webp": "assets/web/4ee5efd3bc871b70-thumb.webp",
+  "assets/web/c093d945c849f1d0.webp": "assets/web/c093d945c849f1d0-thumb.webp",
+  "assets/web/cdc278600275c94e.webp": "assets/web/cdc278600275c94e-thumb.webp",
+  "assets/web/b23dbb8fadc3628d.webp": "assets/web/b23dbb8fadc3628d-thumb.webp",
+  "assets/web/f56687cd76eb9cf3.webp": "assets/web/f56687cd76eb9cf3-thumb.webp",
+  "assets/web/7fbfb0fe9ef4ac15.webp": "assets/web/7fbfb0fe9ef4ac15-thumb.webp",
+  "assets/web/c6424c332351ab2b.webp": "assets/web/c6424c332351ab2b-thumb.webp",
+  "assets/web/52f02108b85b1c17.webp": "assets/web/52f02108b85b1c17-thumb.webp",
+  "assets/web/a2cc7b8c441d01f8.jpg": "assets/web/a2cc7b8c441d01f8-thumb.webp",
+  "assets/web/0780d9abdd189f66.jpg": "assets/web/0780d9abdd189f66-thumb.webp",
+  "assets/web/43ea3c1809485a4a.jpg": "assets/web/43ea3c1809485a4a-thumb.webp",
+  "assets/web/69b44fbd273eeab8.jpg": "assets/web/69b44fbd273eeab8-thumb.webp",
+  "assets/web/b1ad090e4e8facf8.jpg": "assets/web/b1ad090e4e8facf8-thumb.webp",
+  "assets/web/63ae870718f47c3e.jpg": "assets/web/63ae870718f47c3e-thumb.webp",
+  "assets/web/cf2fe987d16776b2.jpg": "assets/web/cf2fe987d16776b2-thumb.webp",
+  "assets/web/6807ad2b9f8fc845.webp": "assets/web/6807ad2b9f8fc845-thumb.webp"
+};
+const ART_NAMES = {"assets/web/deca923f2133359a.webp": "Banner", "assets/web/af94a644e28653f0.webp": "Banner2", "assets/web/16b201e513c08bce.webp": "Banner3", "assets/web/c94b240a5f47ec56.webp": "Banner4", "assets/web/30b5bdab67fcaab0.webp": "1", "assets/web/6cf80cc05c8cb0d3.webp": "10", "assets/web/8e29bd8e5c5a1af7.webp": "11", "assets/web/bdb60c3dd4507e73.webp": "12", "assets/web/48d876ddadc8c7a4.webp": "13", "assets/web/d4e68e70cdc4d45a.webp": "14", "assets/web/e8af09f9bd55928c.webp": "15", "assets/web/5aa4b325d9373262.webp": "16", "assets/web/1c2ffe1b60e3848a.webp": "17", "assets/web/375818367a878214.webp": "18", "assets/web/dffa1fdc6a43b3f2.webp": "19", "assets/web/6271074b690e7a5a.webp": "2", "assets/web/bccad1915b7e6072.webp": "20", "assets/web/d7f3a7e992131dda.webp": "3", "assets/web/fd49d03b687e04fe.webp": "4", "assets/web/dd2e2e6ee39fb7a5.webp": "5", "assets/web/7d158a41137ee158.webp": "6", "assets/web/5be3f613705ab639.webp": "7", "assets/web/64eeb96563435bf6.webp": "8", "assets/web/b4a13dbc1b1970f9.webp": "9", "assets/web/03572d48b6c98c6e.webp": "comm1", "assets/web/45a380045622724a.webp": "comm2", "assets/web/314abe4543284b41.webp": "comm3", "assets/web/61a5213aeb3ac0ce.webp": "comm4", "assets/web/a977591b5f81ee98.webp": "comm5", "assets/web/90fd036ca43d10fa.webp": "comm6", "assets/web/210f992ef713a2f5.webp": "comm7", "assets/web/ae7b3666c3d77a5a.webp": "comm8", "assets/web/958d270eefd18f34.webp": "comm_aeva", "assets/web/fff25e13504e6c98.webp": "comm_blue", "assets/web/5b1fccc73050034e.webp": "comm_golden", "assets/web/4bd76eaaa017e534.webp": "comm_hug", "assets/web/48242ba4f43b66b7.webp": "Firefly", "assets/web/39fa859664e63b62.webp": "PG1", "assets/web/fbde29879e4eb3f3.webp": "darima", "assets/web/be94a305eb53c47d.webp": "sketch", "assets/web/14aa7f7399b70f45.webp": "sketch10", "assets/web/cdf1d332d4b905f0.webp": "sketch11", "assets/web/5c33e004c7c7176b.webp": "sketch12", "assets/web/e4109ae8c55dcf1b.webp": "sketch15", "assets/web/2537eb8908a9ca76.webp": "sketch16", "assets/web/6c5f8a00bce49f3f.webp": "sketch17", "assets/web/00a7f25872fbc4d6.webp": "sketch18", "assets/web/440a3c071f6a6854.webp": "sketch19", "assets/web/63973f58754c4555.webp": "sketch2", "assets/web/b5c194f9d51a9008.webp": "sketch20", "assets/web/eb424dbb1eab9c69.webp": "sketch3", "assets/web/fe8d2f5335c8ae92.webp": "sketch4", "assets/web/8a71222dc88e5226.webp": "sketch5", "assets/web/7c004095245514d3.webp": "sketch6", "assets/web/db4185e46a47a3a1.webp": "sketch7", "assets/web/f72067be9e733af7.webp": "sketch8", "assets/web/cf5f80366d95da77.webp": "sketch9", "assets/web/69ef3cb0cec7ae17.webp": "1", "assets/web/bb98891f01d63d08.webp": "10", "assets/web/f4a4803a007d231d.webp": "11", "assets/web/448ee083774c72b2.webp": "12", "assets/web/3fd16b1e6f268f1c.webp": "13", "assets/web/020280f6ecc10358.webp": "14", "assets/web/d10d8853810a801b.webp": "15", "assets/web/5636a6e673858ce4.webp": "16", "assets/web/ed228cbc5435d424.webp": "17", "assets/web/2df26e992e5202e6.webp": "18-2", "assets/web/d98c011886c76852.webp": "18", "assets/web/b7dcc0b133978ab5.webp": "19", "assets/web/6113367f5399d68b.webp": "20", "assets/web/a8afbb99f8337c75.webp": "21", "assets/web/e7a8a53f50f2464a.webp": "22", "assets/web/df72b6cb7a7cba3d.webp": "23", "assets/web/d5d4bc290b68f3b1.webp": "24", "assets/web/c33430274e82e5c7.webp": "25", "assets/web/674a18a8789ef66b.webp": "26", "assets/web/7bee3b24d6d3abe8.webp": "27", "assets/web/bc47b1cc18dc6ec0.webp": "28", "assets/web/53eb4aea534b2bf8.webp": "29", "assets/web/431e9bba31807217.webp": "3", "assets/web/25c0f1b21a339679.webp": "30", "assets/web/7a50a4d54b31c9a3.webp": "31", "assets/web/f89aa62979eab565.webp": "32", "assets/web/91ac9dc0bef4b090.webp": "34", "assets/web/c61d91e04764c8ec.webp": "35", "assets/web/b34fa639c671577a.webp": "4", "assets/web/cad1126df14a020b.webp": "5", "assets/web/61ea1f6332bfb394.webp": "6", "assets/web/a7a609ba4c0bf60f.webp": "7", "assets/web/4916d95b9c400a7c.webp": "8", "assets/web/b92fa74749bd4c0f.webp": "9", "assets/web/5a46de61db80753e.webp": "cover", "assets/web/166c9f28899d4b78.webp": "nsfw_client1", "assets/web/425dfa5df820a1a5.webp": "nsfw_client2", "assets/web/3358dfef10a89883.webp": "nsfw_client3", "assets/web/f34f0f3484c35e40.webp": "nsfw_client4", "assets/web/53a5aa0e29974200.webp": "nsfw_client5", "assets/web/c3e71af32bfde5e6.webp": "nsfw_client6", "assets/web/2295e973828be519.webp": "nsfw_client7", "assets/web/059165aef5b1f856.webp": "Yaiba", "assets/web/1d4965b5180d59ba.webp": "Yaiba0", "assets/web/028948425588ac6e.webp": "Yaiba1", "assets/web/9c573ed23cb72660.webp": "Yaiba10", "assets/web/3745a85b09ea1e8e.webp": "Yaiba11", "assets/web/8fa5ae8eef1c7188.webp": "Yaiba12", "assets/web/8f4310ba61772a9a.webp": "Yaiba2", "assets/web/63e6a546d311b5ac.webp": "Yaiba3", "assets/web/beb83587c17e6ebf.webp": "Yaiba4", "assets/web/6618e6904258f1ff.webp": "Yaiba5", "assets/web/6210eb9bfdce2932.webp": "Yaiba6", "assets/web/c5f54b49b9c7ac0e.webp": "Yaiba7", "assets/web/d9d5f10baa0fea4a.webp": "Yaiba8", "assets/web/0cb3ad1b8e79f329.webp": "Yaiba9", "assets/web/f989e71ff83edcb0.webp": "Aphrodite playing card", "assets/web/5f9c66ac909043ca.webp": "Apollo playing cards", "assets/web/d45fba974c1c6ef7.webp": "Atemis card", "assets/web/91b8aff200f97d06.webp": "Athena card", "assets/web/73cc6d78c4ceced3.webp": "Atlas cards", "assets/web/291897c81c21affa.webp": "Demeter card", "assets/web/901d08c4a45919bb.webp": "Helen's card", "assets/web/952079beec8bed79.webp": "Hemera Cards", "assets/web/f70812bad03628e3.webp": "Hemiros card", "assets/web/45f7635eacb62061.webp": "Hephaestus card", "assets/web/09e326b65f333fe1.webp": "Hermit Cards", "assets/web/f8e6097afc25392f.webp": "Iris card", "assets/web/57d64e1804c8c88b.webp": "Siren Cards", "assets/web/a78d07bc9b7a18e1.webp": "The Diodysus card", "assets/web/44472ba98a3d687f.webp": "Youth Cards", "assets/web/94ee9ff070a81c0b.webp": "Zeus", "assets/web/84a567e4a44db798.webp": "1", "assets/web/b48843a28dbb199d.webp": "2", "assets/web/36ac80122f4f4967.webp": "3", "assets/web/4ee5efd3bc871b70.webp": "4", "assets/web/c093d945c849f1d0.webp": "5", "assets/web/cdc278600275c94e.webp": "6", "assets/web/b23dbb8fadc3628d.webp": "7", "assets/web/f56687cd76eb9cf3.webp": "8", "assets/web/7fbfb0fe9ef4ac15.webp": "9", "assets/web/c6424c332351ab2b.webp": "Cover", "assets/web/52f02108b85b1c17.webp": "Cover", "assets/web/a2cc7b8c441d01f8.jpg": "page1", "assets/web/0780d9abdd189f66.jpg": "page2", "assets/web/43ea3c1809485a4a.jpg": "page3", "assets/web/69b44fbd273eeab8.jpg": "page4", "assets/web/b1ad090e4e8facf8.jpg": "page5", "assets/web/63ae870718f47c3e.jpg": "page6", "assets/web/cf2fe987d16776b2.jpg": "page7", "assets/web/6807ad2b9f8fc845.webp": "profile"};
+function thumb(src){ return THUMBS[src] || src; }
 
 // ── RENDER ───────────────────────────────────────────────────────────────
+function keyboardCard(el,label){el.tabIndex=0;el.setAttribute("role","button");el.setAttribute("aria-label",label);el.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();el.click();}};}
 function makeGItem(src, idx, pool) {
   const d = document.createElement('div');
   d.className = 'gitem';
-  const name = src.split('/').pop().replace(/\.[^.]+$/,'');
-  d.innerHTML = `<div class="gold-corner"></div><img src="${q(src)}" alt="${name}" loading="lazy" onerror="this.parentNode.style.display='none'"><div class="glabel">${name}</div>`;
+  const name = ART_NAMES[src] || 'Artwork';
+  d.innerHTML = `<div class="gold-corner"></div><img src="${q(thumb(src))}" alt="${name}" loading="lazy" onerror="this.parentNode.style.display='none'"><div class="glabel">${name}</div>`;
   d.onclick = () => openLB(pool, idx);
+  keyboardCard(d, name);
   return d;
 }
 
@@ -1112,9 +1337,9 @@ function makeGItem(src, idx, pool) {
 function makeCommGItem(src, idx, pool) {
   const d = document.createElement('div');
   d.className = 'gitem';
-  const name = src.split('/').pop().replace(/\.[^.]+$/,'');
+  const name = ART_NAMES[src] || 'Artwork';
   d.innerHTML = `<div class="gold-corner"></div>
-    <img src="${q(src)}" alt="${name}" loading="lazy"
+    <img src="${q(thumb(src))}" alt="${name}" loading="lazy"
       onerror="this.parentNode.style.display='none'"
       oncontextmenu="return false" ondragstart="return false"
       style="user-select:none;-webkit-user-drag:none">
@@ -1122,6 +1347,7 @@ function makeCommGItem(src, idx, pool) {
     <div class="glabel">${name}</div>
     <div class="comm-badge">© AthenaART</div>`;
   d.onclick = () => openLB(pool, idx);
+  keyboardCard(d, name);
   return d;
 }
 
@@ -1149,7 +1375,7 @@ function fillProjects(id, projs) {
       c.className = 'project-featured';
       c.innerHTML = `
         <div class="pf-cover">
-          <img src="${q(p.cover)}" alt="${p.title}" loading="lazy" onerror="this.src='${q(p.pages[0])}'">
+          <img src="${q(thumb(p.cover))}" alt="${p.title}" loading="lazy" onerror="this.src='${q(p.pages[0])}'">
           <span class="page-badge">${p.pages.length} pages${p.id==='taro' ? ' · sample' : ''}</span>
         </div>
         <div class="pf-info">
@@ -1162,14 +1388,16 @@ function fillProjects(id, projs) {
           </div>
         </div>`;
       c.onclick = () => openReader(p);
+      keyboardCard(c, p.title);
       el.appendChild(c);
     } else {
       const c = document.createElement('div');
       c.className = 'pcard';
-      c.innerHTML = `<img class="cover" src="${q(p.cover)}" alt="${p.title}" loading="lazy" onerror="this.src='${q(p.pages[0])}'">
+      c.innerHTML = `<img class="cover" src="${q(thumb(p.cover))}" alt="${p.title}" loading="lazy" onerror="this.src='${q(p.pages[0])}'">
         <span class="page-badge">${p.pages.length} pages${p.id==='taro' ? ' · sample' : ''}</span>
         <div class="card-info"><h3>${p.title}</h3><p>${p.desc}</p></div>`;
       c.onclick = () => openReader(p);
+      keyboardCard(c, p.title);
       el.appendChild(c);
     }
   });
@@ -1179,7 +1407,7 @@ function fillProjects(id, projs) {
 function fillNSFW() {
   const el = document.getElementById('g-nsfw');
   if (el._done) return;
-  const pool = NSFW_FILES.map(f => `${NSFW_DIR}/${f}`);
+  const pool = NSFW_FILES;
   NSFW_FILES.forEach((f, i) => {
     const d = document.createElement('div');
     d.className = 'nsfw-item';
@@ -1224,20 +1452,20 @@ function showSec(btn, key) {
 let lbPool=[], lbIdx=0;
 function openLB(pool,idx){
   lbPool=pool; lbIdx=idx;
-  document.getElementById('lb-img').src=q(pool[idx]);
+  document.getElementById('lb-img').src=pool[idx];
   document.getElementById('lb-count').textContent=`${idx+1} / ${pool.length}`;
   document.getElementById('lightbox').classList.add('open');
   document.body.style.overflow='hidden';
 }
 function closeLB(){ document.getElementById('lightbox').classList.remove('open'); document.body.style.overflow=''; }
 function lbBg(e){ if(e.target===document.getElementById('lightbox')) closeLB(); }
-function lbNav(d,e){ e.stopPropagation(); lbIdx=(lbIdx+d+lbPool.length)%lbPool.length; document.getElementById('lb-img').src=q(lbPool[lbIdx]); document.getElementById('lb-count').textContent=`${lbIdx+1} / ${lbPool.length}`; }
+function lbNav(d,e){ e.stopPropagation(); lbIdx=(lbIdx+d+lbPool.length)%lbPool.length; document.getElementById('lb-img').src=lbPool[lbIdx]; document.getElementById('lb-count').textContent=`${lbIdx+1} / ${lbPool.length}`; }
 
 // ── READER ───────────────────────────────────────────────────────────────
 function openReader(p){
   const c=document.getElementById('reader-pages');
   c.innerHTML='';
-  p.pages.forEach(src=>{ const i=document.createElement('img'); i.src=q(src); i.loading='lazy'; i.onerror=function(){this.style.display='none'}; c.appendChild(i); });
+  p.pages.forEach(src=>{ const i=document.createElement('img'); i.src=src; i.loading='lazy'; i.onerror=function(){this.style.display='none'}; c.appendChild(i); });
   document.getElementById('reader-title').textContent=p.title;
   const r=document.getElementById('reader'); r.classList.add('open'); r.scrollTop=0;
   document.body.style.overflow='hidden';
@@ -1264,7 +1492,7 @@ function doPrint(e){ e.preventDefault(); window.print(); }
 document.addEventListener('keydown',e=>{
   if(e.key==='Escape'){
     closeLB(); closeReader();
-    ['resume-modal','contact-modal'].forEach(id=>closeModal(id));
+    ['resume-modal','contact-modal','queue-modal'].forEach(id=>closeModal(id));
     document.body.style.overflow='';
   }
   if(document.getElementById('lightbox').classList.contains('open')){
@@ -1348,117 +1576,28 @@ RENDERS.all();
         <span class="qm-max">5</span>
         <span class="qm-lbl" data-en="slots" data-th="คิว">slots</span>
       </div>
-      <div class="qm-slots" id="qm-slots"></div>
+      <div class="qm-slots" id="qm-slots" aria-live="polite"></div><p style="margin-top:16px;font-size:.8rem;color:#aaa" data-en="Please contact me to confirm availability before booking." data-th="กรุณาติดต่อเพื่อยืนยันคิวว่างก่อนจองงาน">Please contact me to confirm availability before booking.</p>
     </div>
   </div>
-</div>
-
-<!-- ADMIN MODAL -->
-<div class="modal-wrap" id="admin-modal" onclick="modalBg(event,'admin-modal')" style="padding-bottom:52px">
-  <div class="modal-box admin-box">
-    <button class="modal-close" onclick="closeModal('admin-modal')">×</button>
-    <div class="admin-box-head">
-      <h2>⚙ Queue Admin</h2>
-      <p data-en="Set status for each of the 5 slots." data-th="ตั้งสถานะแต่ละช่องคิว">Set status for each of the 5 slots.</p>
-    </div>
-    <div class="admin-box-body" id="admin-rows"></div>
-  </div>
-</div>
-
-<!-- DEV BANNER -->
-<div class="dev-banner">
-  <strong>[DEV]</strong>
-  <span>index2.html</span>
-  <button class="dev-admin-btn" onclick="openModal('admin-modal')">⚙ Admin</button>
 </div>
 
 <script>
-// ── COMMISSION QUEUE ────────────────────────────────────────────────────────
-const S = {
-  empty:   {en:'Open',    th:'ว่าง',       tag:'—'},
-  wip:     {en:'WIP',     th:'กำลังวาด',   tag:'WIP'},
-  process: {en:'Process', th:'ดำเนินการ',  tag:'Process'},
-  final:   {en:'Final',   th:'รอคอนเฟิร์ม', tag:'Final'},
-};
-const MAX = 5;
-let slots = [];
-
-const QUEUE_DEFAULT = [
-  {status:'wip'},
-  {status:'wip'},
-  {status:'empty'},
-  {status:'empty'},
-  {status:'empty'},
-];
-
-function loadSlots(){
-  try{
-    const r = JSON.parse(localStorage.getItem('athena_q')||'null');
-    if(!r){ slots=[...QUEUE_DEFAULT.map(s=>({...s}))]; return; }
-    slots = Array.from({length:MAX},(_,i)=>({status:(r[i]&&r[i].status)||'empty'}));
-  }catch(e){
-    slots=[...QUEUE_DEFAULT.map(s=>({...s}))];
-  }
-}
-
-function saveSlots(){ localStorage.setItem('athena_q', JSON.stringify(slots)); }
-
+const S = {empty:{en:'Open',th:'ว่าง'},wip:{en:'WIP',th:'กำลังวาด'},process:{en:'Process',th:'ดำเนินการ'},final:{en:'Final',th:'รอคอนเฟิร์ม'}};
+let slots = null;
 function renderQueue(){
-  const active = slots.filter(s=>s.status!=='empty').length;
-  const el = document.getElementById('qm-active');
-  if(el) el.textContent = active;
-  const wrap = document.getElementById('qm-slots');
-  if(!wrap) return;
-  wrap.innerHTML='';
-  slots.forEach((slot,i)=>{
-    const cfg = S[slot.status]||S.empty;
-    const tag = slot.status==='empty'
-      ? `<span class="qm-tag" style="color:var(--border)">—</span>`
-      : `<span class="qm-tag">${currentLang==='th'?cfg.th:cfg.en}</span>`;
-    const d = document.createElement('div');
-    d.className=`qm-slot ${slot.status}`;
-    d.innerHTML=`<span class="qm-dot"></span>${tag}`;
-    wrap.appendChild(d);
-  });
+ const wrap=document.getElementById('qm-slots');
+ document.getElementById('qm-active').textContent=slots ? slots.filter(s=>s.status!=='empty').length : '—';
+ wrap.replaceChildren();
+ if(!slots){const p=document.createElement('p');p.textContent=t('Queue unavailable. Please contact me to confirm availability.','ไม่สามารถโหลดคิวได้ กรุณาติดต่อเพื่อสอบถามคิวว่าง');wrap.appendChild(p);return;}
+ slots.forEach((slot,i)=>{const d=document.createElement('div');d.className='qm-slot '+slot.status;const dot=document.createElement('span');dot.className='qm-dot';const label=document.createElement('span');label.className='qm-tag';label.textContent=(i+1)+'. '+S[slot.status][currentLang];d.append(dot,label);wrap.appendChild(d);});
 }
-
-function renderAdmin(){
-  const wrap = document.getElementById('admin-rows');
-  if(!wrap) return;
-  wrap.innerHTML='';
-  slots.forEach((slot,i)=>{
-    const opts = Object.entries(S).map(([k,v])=>
-      `<option value="${k}" ${slot.status===k?'selected':''}>${v.en} / ${v.th}</option>`
-    ).join('');
-    const row = document.createElement('div');
-    row.className='admin-row';
-    row.innerHTML=`<span class="admin-row-num">${i+1}</span><select onchange="slots[${i}].status=this.value">${opts}</select>`;
-    wrap.appendChild(row);
-  });
-  const btn = document.createElement('button');
-  btn.className='admin-save';
-  btn.textContent='💾 บันทึก / Save';
-  btn.onclick=adminSave;
-  wrap.appendChild(btn);
+async function loadSlots(){
+ try {const r=await fetch('queue.json',{cache:'no-store'});if(!r.ok)throw new Error('Queue request failed');const data=await r.json();if(!Array.isArray(data.slots)||data.slots.length!==5||data.slots.some(s=>!s||!Object.hasOwn(S,s.status)))throw new Error('Invalid queue data');slots=data.slots;}
+ catch(e){slots=null;}
+ renderQueue();
 }
-
-function adminSave(){
-  saveSlots();
-  renderQueue();
-  closeModal('admin-modal');
-  const b=document.querySelector('.dev-admin-btn');
-  if(b){const t=b.textContent;b.textContent='✓ Saved!';setTimeout(()=>b.textContent=t,1600);}
-}
-
-// Hook openModal
-const _open0 = openModal;
-window.openModal = function(id){
-  if(id==='queue-modal') renderQueue();
-  if(id==='admin-modal') renderAdmin();
-  _open0(id);
-};
-
-// Init
+const _open0=openModal;
+window.openModal=function(id){_open0(id);if(id==='queue-modal'){renderQueue();loadSlots();}};
 loadSlots();
 </script>
 

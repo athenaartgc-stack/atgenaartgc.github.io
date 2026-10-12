@@ -1,0 +1,20 @@
+# Keep original artwork in Git while publishing only optimized web assets.
+exclude:
+  - COMIC
+  - Commission
+  - Illustration
+  - Mini Thesis Year 3
+  - NSFW 18+
+  - OC yaiba
+  - Taro CMS
+  - Thesis Year 4
+  - WBTOON
+  - Banner.jpg
+  - Banner2.jpg
+  - Banner3.jpg
+  - Banner4.jpg
+  - profile.jpg
+  - Sarawut.txt
+  - push_to_github.bat
+  - README.md
+  - maintenance
